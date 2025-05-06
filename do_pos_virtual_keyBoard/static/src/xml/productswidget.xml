@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-name="do_pos_virtual_keyBoard.OnscreenKeyboardSimple">
+		<t t-if="CurrentLang == 'ar-001'">
+			<div class="keyboard_frame">
+				<ul class="keyboard full_keyboard">
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">&#768;</span><span class="on">&#771;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">1</span><span class="on">!</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">2</span><span class="on">@</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">3</span><span class="on">#</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">4</span><span class="on">$</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">5</span><span class="on">%</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">6</span><span class="on">&#770;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">7</span><span class="on">&amp;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">8</span><span class="on">*</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">9</span><span class="on">(</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">0</span><span class="on">)</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">-</span><span class="on">_</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">=</span><span class="on">+</span></li>
+					<li class="delete lastitem" style="width: 86px;" t-on-click="keyboardClick">delete</li>
+					<li class="tab firstitem" t-on-click="keyboardClick">tab</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">ض</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">ص</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">ث</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">ق</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">ف</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">فغ</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">فع</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">فه</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">فخ</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">فح</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">ففج</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">فد</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">[</span><span class="on">{</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">]</span><span class="on">}</span></li>
+					<li class="symbol lastitem" t-on-click="keyboardClick">
+						<span class="off">|</span>
+						<span class="on">|</span>
+					</li>
+					<li class="capslock firstitem" t-on-click="keyboardClick">caps lock</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">فد</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">س</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">ي</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">يب</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">يل</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">يا</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">يت</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">ين</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">يم</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">يك</li>
+					<li class="letter" style="width: 34px;" t-on-click="keyboardClick">يط</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">;</span><span class="on">:</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">'</span><span class="on">&quot;</span></li>
+					<li class="return lastitem" t-on-click="keyboardClick">return</li>
+					<li class="left-shift firstitem" t-on-click="keyboardClick">shift</li>
+					<li class="letter" style="width: 32px;" t-on-click="keyboardClick">يئ</li>
+					<li class="letter" style="width: 32px;" t-on-click="keyboardClick">يء</li>
+					<li class="letter" style="width: 32px;" t-on-click="keyboardClick">يؤ</li>
+					<li class="letter" style="width: 32px;" t-on-click="keyboardClick">ير</li>
+					<li class="letter" style="width: 32px;" t-on-click="keyboardClick">يلا</li>
+					<li class="letter" style="width: 32px;" t-on-click="keyboardClick">يى</li>
+					<li class="letter" style="width: 32px;" t-on-click="keyboardClick">ية</li>
+					<li class="letter" style="width: 32px;" t-on-click="keyboardClick">يو</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">يز</li>
+					<li class="letter" style="width: 33px;" t-on-click="keyboardClick">يظ</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">,</span><span class="on">&lt;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">.</span><span class="on">&gt;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">/</span><span class="on">?</span></li>
+					<li class="right-shift lastitem" style="width: 66px;" t-on-click="keyboardClick">shift</li>
+					<li class="space firstitem lastitem" t-on-click="keyboardClick">&amp;nbsp;</li>
+				</ul>
+				<p class="close_button" t-on-click="keyboardClose">close</p>
+			</div>
+		</t>
+		<t t-elif="CurrentLang == 'es-ES'">
+			<div class="keyboard_frame">
+				<ul class="keyboard full_keyboard">
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">&#768;</span><span class="on">&#771;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">1</span><span class="on">!</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">2</span><span class="on">@</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">3</span><span class="on">#</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">4</span><span class="on">$</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">5</span><span class="on">%</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">6</span><span class="on">&#770;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">7</span><span class="on">&amp;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">8</span><span class="on">*</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">9</span><span class="on">(</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">0</span><span class="on">)</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">-</span><span class="on">_</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">=</span><span class="on">+</span></li>
+					<li class="delete lastitem" t-on-click="keyboardClick">delete</li>
+					<li class="tab firstitem" t-on-click="keyboardClick">tab</li>
+					<li class="letter" t-on-click="keyboardClick">q</li>
+					<li class="letter" t-on-click="keyboardClick">w</li>
+					<li class="letter" t-on-click="keyboardClick">e</li>
+					<li class="letter" t-on-click="keyboardClick">r</li>
+					<li class="letter" t-on-click="keyboardClick">t</li>
+					<li class="letter" t-on-click="keyboardClick">y</li>
+					<li class="letter" t-on-click="keyboardClick">u</li>
+					<li class="letter" t-on-click="keyboardClick">i</li>
+					<li class="letter" t-on-click="keyboardClick">o</li>
+					<li class="letter" t-on-click="keyboardClick">p</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">[</span><span class="on">{</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">]</span><span class="on">}</span></li>
+					<li class="symbol lastitem" t-on-click="keyboardClick">
+						<span class="off">|</span>
+						<span class="on">|</span>
+					</li>
+					<li class="capslock firstitem" t-on-click="keyboardClick">caps lock</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">a</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">s</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">d</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">f</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">g</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">h</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">j</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">k</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">l</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">ñ</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">;</span><span class="on">:</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">'</span><span class="on">&quot;</span></li>
+					<li class="return lastitem" style="width: 80px;" t-on-click="keyboardClick">return</li>
+					<li class="left-shift firstitem" t-on-click="keyboardClick">shift</li>
+					<li class="letter" t-on-click="keyboardClick">z</li>
+					<li class="letter" t-on-click="keyboardClick">x</li>
+					<li class="letter" t-on-click="keyboardClick">c</li>
+					<li class="letter" t-on-click="keyboardClick">v</li>
+					<li class="letter" t-on-click="keyboardClick">b</li>
+					<li class="letter" t-on-click="keyboardClick">n</li>
+					<li class="letter" t-on-click="keyboardClick">m</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">,</span><span class="on">&lt;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">.</span><span class="on">&gt;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">/</span><span class="on">?</span></li>
+					<li class="right-shift lastitem" style="width: 105px;" t-on-click="keyboardClick">shift</li>
+					<li class="space firstitem lastitem" style="width: 655px;" t-on-click="keyboardClick">&amp;nbsp;</li>
+				</ul>
+				<p class="close_button" t-on-click="keyboardClose">close</p>
+			</div>
+		</t>
+		<t t-elif="CurrentLang == 'fr-FR'">
+			<div class="keyboard_frame">
+				<ul class="keyboard full_keyboard">
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">&#768;</span><span class="on">&#771;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">1</span><span class="on">!</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">2</span><span class="on">@</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">3</span><span class="on">#</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">4</span><span class="on">$</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">5</span><span class="on">%</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">6</span><span class="on">&#770;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">7</span><span class="on">&amp;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">8</span><span class="on">*</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">9</span><span class="on">(</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">0</span><span class="on">)</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">-</span><span class="on">_</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">=</span><span class="on">+</span></li>
+					<li class="delete lastitem" t-on-click="keyboardClick">delete</li>
+					<li class="tab firstitem" t-on-click="keyboardClick">tab</li>
+					<li class="letter" t-on-click="keyboardClick">À</li>
+					<li class="letter" t-on-click="keyboardClick">Â</li>
+					<li class="letter" t-on-click="keyboardClick">Ä</li>
+					<li class="letter" t-on-click="keyboardClick">Æ</li>
+					<li class="letter" t-on-click="keyboardClick">Ç</li>
+					<li class="letter" t-on-click="keyboardClick">È</li>
+					<li class="letter" t-on-click="keyboardClick">É</li>
+					<li class="letter" t-on-click="keyboardClick">Ê</li>
+					<li class="letter" t-on-click="keyboardClick">Ë</li>
+					<li class="letter" t-on-click="keyboardClick">Î</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">[</span><span class="on">{</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">]</span><span class="on">}</span></li>
+					<li class="symbol lastitem" t-on-click="keyboardClick">
+						<span class="off">|</span>
+						<span class="on">|</span>
+					</li>
+					<li class="capslock firstitem" t-on-click="keyboardClick">caps lock</li>
+					<li class="letter" t-on-click="keyboardClick">Ï</li>
+					<li class="letter" t-on-click="keyboardClick">Ô</li>
+					<li class="letter" t-on-click="keyboardClick">Œ</li>
+					<li class="letter" t-on-click="keyboardClick">Ù</li>
+					<li class="letter" t-on-click="keyboardClick">Û</li>
+					<li class="letter" t-on-click="keyboardClick">Ü</li>
+					<li class="letter" t-on-click="keyboardClick">à</li>
+					<li class="letter" t-on-click="keyboardClick">â</li>
+					<li class="letter" t-on-click="keyboardClick">ä</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">;</span><span class="on">:</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">'</span><span class="on">&quot;</span></li>
+					<li class="return lastitem" style="width: 74px;" t-on-click="keyboardClick">return</li>
+					<li class="left-shift firstitem" t-on-click="keyboardClick">shift</li>
+					<li class="letter" t-on-click="keyboardClick">æ</li>
+					<li class="letter" t-on-click="keyboardClick">ç</li>
+					<li class="letter" t-on-click="keyboardClick">è</li>
+					<li class="letter" t-on-click="keyboardClick">é</li>
+					<li class="letter" t-on-click="keyboardClick">ê</li>
+					<li class="letter" t-on-click="keyboardClick">ë</li>
+					<li class="letter" t-on-click="keyboardClick">î</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">,</span><span class="on">&lt;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">.</span><span class="on">&gt;</span></li>
+					<li class="symbol" style="width: 35px;" t-on-click="keyboardClick"><span class="off">/</span><span class="on">?</span></li>
+					<li class="right-shift lastitem" t-on-click="keyboardClick">shift</li>
+					<li class="space firstitem lastitem" style="width: 655px;" t-on-click="keyboardClick">&amp;nbsp;</li>
+				</ul>
+				<p class="close_button" t-on-click="keyboardClose">close</p>
+			</div>
+		</t>
+		<t t-elif="CurrentLang == 'pt-PT'">
+			<div class="keyboard_frame">
+				<ul class="keyboard full_keyboard">
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">&#768;</span><span class="on">&#771;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">1</span><span class="on">!</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">2</span><span class="on">@</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">3</span><span class="on">#</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">4</span><span class="on">$</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">5</span><span class="on">%</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">6</span><span class="on">&#770;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">7</span><span class="on">&amp;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">8</span><span class="on">*</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">9</span><span class="on">(</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">0</span><span class="on">)</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">-</span><span class="on">_</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">=</span><span class="on">+</span></li>
+					<li class="delete lastitem" t-on-click="keyboardClick">delete</li>
+					<li class="tab firstitem" t-on-click="keyboardClick">tab</li>
+					<li class="letter" t-on-click="keyboardClick">q</li>
+					<li class="letter" t-on-click="keyboardClick">w</li>
+					<li class="letter" t-on-click="keyboardClick">e</li>
+					<li class="letter" t-on-click="keyboardClick">r</li>
+					<li class="letter" t-on-click="keyboardClick">t</li>
+					<li class="letter" t-on-click="keyboardClick">y</li>
+					<li class="letter" t-on-click="keyboardClick">u</li>
+					<li class="letter" t-on-click="keyboardClick">i</li>
+					<li class="letter" t-on-click="keyboardClick">o</li>
+					<li class="letter" t-on-click="keyboardClick">p</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">[</span><span class="on">{</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">]</span><span class="on">}</span></li>
+					<li class="symbol lastitem" t-on-click="keyboardClick">
+						<span class="off">|</span>
+						<span class="on">|</span>
+					</li>
+					<li class="capslock firstitem" t-on-click="keyboardClick">caps lock</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">a</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">s</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">d</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">f</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">g</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">h</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">j</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">k</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">l</li>
+					<li class="letter" style="width: 35px;" t-on-click="keyboardClick">ç</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">;</span><span class="on">:</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">'</span><span class="on">&quot;</span></li>
+					<li class="return lastitem" style="width: 79px;" t-on-click="keyboardClick">return</li>
+					<li class="left-shift firstitem" t-on-click="keyboardClick">shift</li>
+					<li class="letter" t-on-click="keyboardClick">z</li>
+					<li class="letter" t-on-click="keyboardClick">x</li>
+					<li class="letter" t-on-click="keyboardClick">c</li>
+					<li class="letter" t-on-click="keyboardClick">v</li>
+					<li class="letter" t-on-click="keyboardClick">b</li>
+					<li class="letter" t-on-click="keyboardClick">n</li>
+					<li class="letter" t-on-click="keyboardClick">m</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">,</span><span class="on">&lt;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">.</span><span class="on">&gt;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">/</span><span class="on">?</span></li>
+					<li class="right-shift lastitem" style="width: 104px;" t-on-click="keyboardClick">shift</li>
+					<li class="space firstitem lastitem" style="width: 654px;" t-on-click="keyboardClick">&amp;nbsp;</li>
+				</ul>
+				<p class="close_button" t-on-click="keyboardClose">close</p>
+			</div>
+		</t>
+		<t t-else="">
+			<div class="keyboard_frame">
+				<ul class="keyboard full_keyboard">
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">&#768;</span><span class="on">&#771;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">1</span><span class="on">!</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">2</span><span class="on">@</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">3</span><span class="on">#</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">4</span><span class="on">$</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">5</span><span class="on">%</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">6</span><span class="on">&#770;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">7</span><span class="on">&amp;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">8</span><span class="on">*</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">9</span><span class="on">(</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">0</span><span class="on">)</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">-</span><span class="on">_</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">=</span><span class="on">+</span></li>
+					<li class="delete lastitem" t-on-click="keyboardClick">delete</li>
+					<li class="tab firstitem" t-on-click="keyboardClick">tab</li>
+					<li class="letter" t-on-click="keyboardClick">q</li>
+					<li class="letter" t-on-click="keyboardClick">w</li>
+					<li class="letter" t-on-click="keyboardClick">e</li>
+					<li class="letter" t-on-click="keyboardClick">r</li>
+					<li class="letter" t-on-click="keyboardClick">t</li>
+					<li class="letter" t-on-click="keyboardClick">y</li>
+					<li class="letter" t-on-click="keyboardClick">u</li>
+					<li class="letter" t-on-click="keyboardClick">i</li>
+					<li class="letter" t-on-click="keyboardClick">o</li>
+					<li class="letter" t-on-click="keyboardClick">p</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">[</span><span class="on">{</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">]</span><span class="on">}</span></li>
+					<li class="symbol lastitem" t-on-click="keyboardClick">
+						<span class="off">|</span>
+						<span class="on">|</span>
+					</li>
+					<li class="capslock firstitem" t-on-click="keyboardClick">caps lock</li>
+					<li class="letter" t-on-click="keyboardClick">a</li>
+					<li class="letter" t-on-click="keyboardClick">s</li>
+					<li class="letter" t-on-click="keyboardClick">d</li>
+					<li class="letter" t-on-click="keyboardClick">f</li>
+					<li class="letter" t-on-click="keyboardClick">g</li>
+					<li class="letter" t-on-click="keyboardClick">h</li>
+					<li class="letter" t-on-click="keyboardClick">j</li>
+					<li class="letter" t-on-click="keyboardClick">k</li>
+					<li class="letter" t-on-click="keyboardClick">l</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">;</span><span class="on">:</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">'</span><span class="on">&quot;</span></li>
+					<li class="return lastitem" style="width: 75px;" t-on-click="keyboardClick">return</li>
+					<li class="left-shift firstitem" t-on-click="keyboardClick">shift</li>
+					<li class="letter" t-on-click="keyboardClick">z</li>
+					<li class="letter" t-on-click="keyboardClick">x</li>
+					<li class="letter" t-on-click="keyboardClick">c</li>
+					<li class="letter" t-on-click="keyboardClick">v</li>
+					<li class="letter" t-on-click="keyboardClick">b</li>
+					<li class="letter" t-on-click="keyboardClick">n</li>
+					<li class="letter" t-on-click="keyboardClick">m</li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">,</span><span class="on">&lt;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">.</span><span class="on">&gt;</span></li>
+					<li class="symbol" t-on-click="keyboardClick"><span class="off">/</span><span class="on">?</span></li>
+					<li class="right-shift lastitem" style="width: 106px;" t-on-click="keyboardClick">shift</li>
+					<li class="space firstitem lastitem" style="width: 657px;" t-on-click="keyboardClick">&amp;nbsp;</li>
+				</ul>
+				<p class="close_button" t-on-click="keyboardClose">close</p>
+			</div>
+		</t>
+	</t>
+	<t t-name="do_pos_virtual_keyBoard.Chrome" t-inherit="point_of_sale.Chrome" t-inherit-mode="extension">
+		<xpath expr="//div[hasclass('pos-content')]" position="inside">
+			<OnscreenKeyboardSimple/>
+		</xpath>
+	</t>
+
+
+	 <t t-name="do_pos_virtual_keyBoard.input" t-inherit="point_of_sale.input" t-inherit-mode="extension" >
+ 
+		<xpath expr="//input" position="attributes">
+		  <attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+	</t>
+
+	 <t t-name="do_pos_virtual_keyBoard.PartnerList" t-inherit="point_of_sale.PartnerList" t-inherit-mode="extension">
+		<!-- <xpath expr="//div[hasclass('pos-search-bar')]//input" position="attributes"> -->
+		<xpath expr="//Input" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+	</t>
+</templates>

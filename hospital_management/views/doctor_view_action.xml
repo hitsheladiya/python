@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- TREE VIEW -->
+		<record id="tree_doctor_view" model="ir.ui.view">
+			<field name="name">hospital.doctor.list</field>
+			<field name="model">hospital.doctor</field>
+			<field name="arch" type="xml">
+				<list>
+					<field name="name"/>
+					<field name="doctor_type"/>
+				</list>
+			</field>
+		</record>
+
+		<!-- KANBAN VIEW -->
+		<record id="kanban_doctor_view" model="ir.ui.view">
+			<field name="name">hospital.doctor.kanban</field>
+			<field name="model">hospital.doctor</field>
+			<field name="arch" type="xml">
+				<kanban string="Doctor Kanban" class="o_res_partner_kanban">
+					<field name="id"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_kanban_global_click" style="height:135px; background-color:#ffffff; color:#060606">
+								<div style="width:30%;float:left; display:inline-block;">
+									<img alt="Avtar" t-att-src="kanban_image('hospital.doctor','image_doctor',record.id.raw_value)" style="width:100px;height:117px"/>
+								</div>
+								<div style="width:70%;float:right;display:inline-block;">
+									<ul style="list-style-type:circle">
+										<li>
+											<b>Name : </b><field name="name"/>
+											<br/>
+										</li>
+										<li>
+											<b>Type : </b><field name="doctor_type"/>
+											<br/>
+										</li>
+										<li>
+											<b>Age : </b><field name="doctor_age"/>
+										</li>
+										<li>
+											<b>Gender : </b><field name="doctor_gender"/>
+										</li>
+										<li>
+											<b>Hospital Name :</b><field name="doctor_id"/>
+										</li>
+									</ul>	
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+		
+		<!-- FORM VIEW -->
+		<record id="form_doctor_view" model="ir.ui.view">
+			<field name="name">hospital.doctor.form</field>
+			<field name="model">hospital.doctor</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<field name="image_doctor" widget="image" style="width:100px;height:100px"/>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="doctor_type"/>
+								<field name="doctor_age"/>
+								<field name="doctor_gender" widget="radio"/>
+								<field name="mobile_number" widger="phone"/>
+								<field name="doctor_id"/>
+								<field name="doctor_appo_patient_id"/>
+							</group>
+						</group>
+					</sheet>
+					<chatter/>
+				</form>
+			</field>
+		</record>
+
+		<!-- ACTION -->
+		<record id="action_doctor" model="ir.actions.act_window">
+			<field name="name">Doctor</field>
+			<field name="res_model">hospital.doctor</field>
+			<field name="view_mode">kanban,list,form</field>
+		</record>
+	</data>
+</odoo>

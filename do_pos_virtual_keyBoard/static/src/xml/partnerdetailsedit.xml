@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<!-- <t t-name="PartnerDetailsEdit" t-inherit="point_of_sale.PartnerDetailsEdit" t-inherit-mode="extension" owl="1"> -->
+		<!-- <xpath expr="//input[@name='name']" position="attributes"> -->
+			<!-- <attribute name="t-on-click">_onClickProductSearch</attribute> -->
+		<!-- </xpath> -->
+	   <!-- <xpath expr="//div[hasclass('partner-details-box')]//input" position="attributes"> -->
+			<!-- <attribute name="t-on-click">_onClickProductSearch</attribute> -->
+		<!-- </xpath> -->
+		<!-- <xpath expr="//input[@name='street']" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+		<xpath expr="//input[@name='city']" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+		<xpath expr="//input[@name='zip']" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+		<xpath expr="//input[@name='email']" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+		<xpath expr="//input[@name='phone']" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+		<xpath expr="//input[@name='mobile']" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+		<xpath expr="//input[@name='barcode']" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+		 <xpath expr="//input[@name='vat']" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath> -->
+	<!-- </t> -->
+</templates>

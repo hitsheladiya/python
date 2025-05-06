@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="view_calendar_event_form" model="ir.ui.view">
+		<field name="name">calendar.event.form</field>
+		<field name="model">calendar.event</field>
+		<field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//sheet" position="before">
+				<header>
+					<field name="closed" invisible="1"/>
+					<field name="create_uid" invisible="1"/>
+					<button name="open" type="object" string="Join Session" class="oe_highlight" invisible="closed or not create_uid"/>
+					<button name="action_close_meeting" string="Close Session" type="object" groups="base.group_user" invisible="closed or not create_uid"/>
+					<button name="action_reopen_meeting" string="Reopen Session" type="object" groups="base.group_user" invisible="not closed or not create_uid"/>
+					<button name="action_calendar_event_send" string="Send by Email" type="object" class="btn-primary"/>
+				</header>
+			</xpath>
+			<xpath expr="//widget[@name='web_ribbon']" position="before">
+				<div class="oe_button_box" name="button_box" groups="base.group_user">
+					<button name="action_open_participant_history" type="object" class="oe_stat_button"
+							icon="fa-history" invisible="not participant_history_ids">
+						<span>
+							Attendees History
+						</span>
+					</button>
+					<button name="action_open_participant_history_group" type="object" class="oe_stat_button"
+							icon="fa-history" invisible="not participant_history_group_ids">
+						<span>
+							Group History
+						</span>
+					</button>
+				</div>
+			</xpath>
+			<xpath expr="//notebook//page[last()]" position="after">
+				<page name="page_remote_meeting" string="Remote Session">
+					<group>
+						<group>
+							<field name="video_conference"/>
+							<field name="conference_type"/>
+							<field name="anonymous_participant" invisible="conference_type != 'jitsi'"/>
+							<field name="jitsi_password" invisible="conference_type != 'jitsi'"/>
+							<field name="chat_jitsi" invisible="conference_type != 'jitsi'"/>
+							<field name="bbb_meeting_id" invisible="conference_type != 'bigbluebutton'" required="conference_type == 'bigbluebutton'"/>
+							<field name="bbb_attendeePW" invisible="conference_type != 'bigbluebutton'" required="conference_type == 'bigbluebutton'"/>
+							<field name="bbb_moderatorPW" invisible="conference_type != 'bigbluebutton'" required="conference_type == 'bigbluebutton'"/>
+							<field name="bbb_allow_start_stop_recording" invisible="conference_type != 'bigbluebutton'"/>
+							<field name="bbb_allow_to_record_meeting" invisible="conference_type != 'bigbluebutton'"/>
+							<field name="bbb_auto_start_recording" invisible="conference_type != 'bigbluebutton'"/>
+							<field name="bbb_mute_on_start" invisible="conference_type != 'bigbluebutton'"/>
+							<field name="bbb_default_presentation" invisible="conference_type != 'bigbluebutton'" filename="bbb_default_presentation_name"/>
+							<field name="bbb_default_presentation_name" invisible="1"/>
+							<button name="create_bigbluebutton_meeting" string="Create BigBlueButton" type="object" invisible="1"/>
+						</group>
+						<group>
+							<field name="is_otp_enable"/>
+							<field name="otp_type_email" invisible="not is_otp_enable"/>
+							<field name="url" widget="CopyClipboardChar" options="{'string': 'Copy URL'}"/>
+							<field name="document_list_preview"/>
+							<field name="document_list_preview_user_ids" widget="many2many_tags" invisible="not document_list_preview"/>
+							<label for="document_delete"/>
+							<div>
+								<field name="document_delete"/>
+								<br/>
+								<span invisible="not document_delete">Users of Document Delete Permission.</span>
+								<field name="document_delete_ids" widget="many2many_tags" invisible="not document_delete"/>
+							</div>
+						</group>
+					</group>
+					<group string="Attendees History">
+						<field name="participant_history_ids" options='{"no_open": True}' readonly="1" context="{'create': False, 'edit': False, 'delete': False}">
+							<list>
+								<field name="name"/>
+								<field name="partner_id"/>
+								<field name="join_datetime"/>
+								<field name="left_datetime"/>
+							</list>
+						</field>
+					</group>
+					<group string="Attendees History Group">
+						<field name="participant_history_group_ids" options='{"no_open": True}' readonly="1" context="{'create': False, 'edit': False, 'delete': False}">
+							<list>
+								<field name="partner_id"/>
+								<field name="total_time" widget="float_time"/>
+							</list>
+						</field>
+					</group>
+					<group string="Personal Notes">
+						<field name="notes_ids" options='{"no_open": True}' readonly="1" context="{'create': False, 'edit': False, 'delete': False}"/>
+					</group>
+					<group string="Attachment History">
+						<field name="attachment_history_ids" options='{"no_open": True}' readonly="1" context="{'create': False, 'edit': False, 'delete': False}">
+							<list>
+								<field name="name"/>
+								<field name="partner_id"/>
+								<field name="type"/>
+								<field name="action_date"/>
+								<field name="attachment_id"/>
+							</list>
+						</field>
+					</group>
+				</page>
+			</xpath>
+		</field>
+	</record>
+
+	<record id="view_participant_history_search" model="ir.ui.view">
+		<field name="name">participant.history.search</field>
+		<field name="model">participant.history</field>
+		<field name="arch" type="xml">
+			<search string="String">
+				<field name="name" filter_domain="[('name','ilike',self)]" string="Name"/>
+				<filter name="name" string="Name" domain="[]" context="{'group_by' : 'name'}"/>
+				<filter name="calendar_event_id" string="Session" domain="[]" context="{'group_by' : 'calendar_event_id'}"/>
+			</search>
+		</field>
+	</record>
+
+	<record model='ir.ui.view' id='participant_history_form'>
+		<field name='name'>participant.history.form</field>
+		<field name='model'>participant.history</field>
+		<field name='arch' type='xml'>
+			<form string='Participant History' create="false" edit="false" delete="false">
+				<sheet>
+					<group>
+						<group>
+							<field name="name"/>
+							<field name="partner_id"/>
+							<field name="join_datetime"/>
+							<field name="attendance_state"/>
+						</group>
+						<group>
+							<field name="calendar_event_id"/>
+							<field name="jitsi_id"/>
+							<field name="left_datetime"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model='ir.ui.view' id='participant_history_tree'>
+		<field name='name'>participant.history.list</field>
+		<field name='model'>participant.history</field>
+		<field name='arch' type='xml'>
+			<list string='Participant History' create="false" edit="false" delete="false">
+				<field name="calendar_event_id"/>
+				<field name="name"/>
+				<field name="partner_id"/>
+				<field name="join_datetime"/>
+				<field name="left_datetime"/>
+			</list>
+		</field>
+	</record>
+
+	<record id="participant_history_action" model="ir.actions.act_window">
+		<field name="name">Participant History</field>
+		<field name="res_model">participant.history</field>
+		<field name="view_mode">list,form</field>
+	</record>
+
+	<menuitem id="participant_menu" name="Participant's" parent="calendar.mail_menu_calendar" groups="base.group_user"/>
+	<menuitem id="participant_history_menu" name="Participant History" parent="participant_menu" action="participant_history_action" groups="base.group_user"/>
+
+	<record model='ir.ui.view' id='participant_history_group_form'>
+		<field name='name'>participant.history.group.form</field>
+		<field name='model'>participant.history.total.time</field>
+		<field name='arch' type='xml'>
+			<form string='Participant History' create="false" edit="false" delete="false">
+				<sheet>
+					<group>
+						<field name="calendar_event_id"/>
+						<field name="partner_id"/>
+						<field name="total_time" widget="float_time"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model='ir.ui.view' id='participant_history_group_tree'>
+		<field name='name'>participant.history.group.list</field>
+		<field name='model'>participant.history.total.time</field>
+		<field name='arch' type='xml'>
+			<list string='Participant History' create="false" edit="false" delete="false">
+				<field name="calendar_event_id"/>
+				<field name="partner_id"/>
+				<field name="total_time" widget="float_time"/>
+			</list>
+		</field>
+	</record>
+
+	<record id="participant_history_group_action" model="ir.actions.act_window">
+		<field name="name">Participant History Group</field>
+		<field name="res_model">participant.history.total.time</field>
+		<field name="view_mode">list,form</field>
+	</record>
+
+	<menuitem id="participant_history_group_menu" name="Participant History Group" parent="participant_menu" action="participant_history_group_action" groups="base.group_user"/>
+
+</odoo>

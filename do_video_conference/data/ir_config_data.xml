@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+	<record id="jitsi_meet_url" model="ir.config_parameter">
+		<field name="key">jitsi.server</field>
+		<field name="value">https://meet.jit.si/</field>
+	</record>
+	<record id="jitsi_meet_domain" model="ir.config_parameter">
+		<field name="key">jitsi.server.domain</field>
+		<field name="value">meet.jit.si</field>
+	</record>
+	<record id="bigbluebutton_url" model="ir.config_parameter">
+		<field name="key">bigbluebutton.url</field>
+		<field name="value">https://mojelearning.dsdja.com/bigbluebutton/</field>
+	</record>
+	<record id="bigbluebutton_secret" model="ir.config_parameter">
+		<field name="key">bigbluebutton.secret</field>
+		<field name="value">6EXOGCsLATJN3PRSYZ9zSuecxVrrp2n0PrgCSqdR0I</field>
+	</record>
+</odoo>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="participant_status_template">
+		<div id="participant_section_list">
+			<t t-foreach="partner_ids" t-as="partner">
+				<div class="list_participant">
+					<span t-attf-class="dot #{'dot-success' if partner.get('attendance_state') == 'checked_in' else 'dot-warning'}"></span>
+					<span t-field="partner.get('partner_id').name"/>
+				</div>
+			</t>
+		</div>
+	</template>
+
+	<template id="email_otp_model">
+		<!-- The Modal -->
+		<div class="modal fade" id="email_otp_model" style="display: none;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Enter OTP</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+					<!-- Modal body -->
+					<div class="modal-body">
+						<h3 class="text-center">Check your Email for the OTP</h3>
+						<input type="text" class="form-control" name="otp_input" placeholder="Enter OTP"
+							   id="otp_input"></input>
+						<div class="otp_error_meesage alert alert-warning d-none"/>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary otp_model_submit">Submit</button>
+						<button type="button" class="btn btn-danger otp_model_close">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="page_meeting_template" name="Session">
+		<t t-call="website.layout">
+			<div id="wrap" class="oe_structure oe_empty">
+				<div class="oe_website_metting">
+					<t t-if="not calendar_event.closed and not errors">
+						<div class="row no-gutters">
+							<div class="col-12 background_gray">
+								<div t-attf-class="grid-stack #{'checked_out_d_none' if attendance_state == 'checked_in' else 'height_500'}">
+									<div t-attf-class="grid-stack-item #{'checked_out_d_none' if attendance_state == 'checked_in' else 'checked_in_d_none'}"
+										 data-gs-x="0" data-gs-y="4" data-gs-width="5" data-gs-height="7">
+										<div class="grid-stack-item-content background_white">
+											<t t-if="calendar_event.document_list_preview">
+												<t t-call="do_video_conference.website_ir_attachment"/>
+											</t>
+										</div>
+									</div>
+									<div t-attf-class="grid-stack-item #{'checked_out_d_none' if attendance_state == 'checked_in' else 'checked_in_d_none'}"
+										 data-gs-x="0" data-gs-y="7" data-gs-width="5" data-gs-height="4"
+										 data-gs-no-move="true">
+										<div class="grid-stack-item-content background_white">
+											<t t-call="do_video_conference.meeting_personal_notes"/>
+										</div>
+									</div>
+									<div t-attf-class="grid-stack-item #{'checked_out_d_none' if attendance_state == 'checked_in' else 'checked_in_d_none'}"
+										 data-gs-x="5" data-gs-y="0" data-gs-width="7" data-gs-height="7">
+										<div class="grid-stack-item-content background_white">
+											<t t-if="calendar_event.conference_type">
+												<div class="card">
+													<div class="card-header">
+														<div class="row">
+															<div class="col-12">
+																<h5>
+																	<t t-esc="calendar_event.name"/>
+																</h5>
+															</div>
+														</div>
+													</div>
+													<div class="card-body pt-0 pb-0 pr-0 pl-0">
+														<t t-if="not calendar_event.closed">
+															<t t-if="calendar_event.conference_type == 'jitsi'">
+																<div id="meeting" t-att-data-domain="jitsi_meet_domain"
+																	 t-att-data-roomname="'Meeting Video ' + calendar_event.name"
+																	 t-att-data-password="calendar_event.jitsi_password"
+																	 t-att-data-username="current_user.name"
+																	 t-att-data-partner_name="partner_id.name"
+																	 t-att-data-partner_email="partner_id.email"
+																	 t-att-data-calendar_event_id="calendar_event.id"
+																	 t-att-data-chat_jitsi="calendar_event.chat_jitsi"
+																	 t-att-data-partner_id="partner_id.id"
+																	 t-attf-class="jitsi_meeting #{'jitsi_already_checked_in' if attendance_state == 'checked_in' else ''}"/>
+															</t>
+															<t t-if="calendar_event.conference_type == 'bigbluebutton'">
+																<t t-if="calendar_event.bbb_attendeePW">
+																	<div class="modal show" id="bbbPasswordModal"
+																		 role="dialog" style="display: block;position: absolute;">
+																		<div class="modal-dialog">
+																			<!-- Modal content-->
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<h4 class="modal-title">Big Blue
+																						Button Password
+																					</h4>
+																				</div>
+																				<div class="modal-body">
+																					<input type="text"
+																						   name="bbb_attendeePW"
+																						   class="form-control"
+																						   id="bbb_attendeepassword_input"/>
+																					<div class="bbb_password_error_meesage alert alert-warning d-none"></div>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button"
+																							class="btn btn-default"
+																							id="bigbluebutton_passwordcheck">
+																						Submit
+																					</button>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</t>
+																<!-- <iframe t-att-src="calendar_event.join_bigbluebutton_meeting()" height="500" width="100%" id="meeting" t-att-data-partner_name="partner_id.name" t-att-data-partner_email="partner_id.email" t-att-data-calendar_event_id="calendar_event.id" t-att-data-partner_id="partner_id.id" allow="camera *; microphone *; fullscreen *;" allowfullscreen="allowfullscreen"></iframe> -->
+																<iframe src="" height="500" width="100%" id="meeting"
+																		t-att-data-partner_name="partner_id.name"
+																		t-att-data-partner_email="partner_id.email"
+																		t-att-data-calendar_event_id="calendar_event.id"
+																		t-att-data-partner_id="partner_id.id"
+																		allow="camera *; microphone *; fullscreen *;"
+																		allowfullscreen="allowfullscreen"
+																		class="bbb_meeting"></iframe>
+															</t>
+														</t>
+													</div>
+												</div>
+											</t>
+										</div>
+									</div>
+									<div t-attf-class="grid-stack-item participant_grid_stack_item #{'' if attendance_state == 'checked_in' else 'participant_grid_stack_item_show'}"
+										 data-gs-x="5" data-gs-y="7" data-gs-width="7" data-gs-height="2">
+										<div class="grid-stack-item-content background_white">
+											<div class="card" id="participant_section"
+												 t-if="calendar_event.conference_type">
+												<div class="card-header">
+													<div class="row">
+														<div class="col-6">
+															Participant(s)
+														</div>
+														<div class="col-6 text-right">
+															<button class="presence_meeting btn btn-success"
+																	t-attf-style="#{'display: none;' if attendance_state == 'checked_in' else ''}"
+																	t-att-data-otp-enable="calendar_event.is_otp_enable">
+																<i class="fa fa-sign-in"/>
+																Check In
+															</button>
+															<button class="leave_meeting btn btn-danger"
+																	t-attf-style="#{'display: none;' if attendance_state == 'checked_out' else ''}">
+																<i class="fa fa-sign-out"/>
+																Check Out
+															</button>
+														</div>
+													</div>
+												</div>
+												<div class="card-body">
+													<div class="row">
+														<t t-call="do_video_conference.participant_status_template"/>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</t>
+				</div>
+			</div>
+			<t t-if="calendar_event.is_otp_enable">
+				<t t-call="do_video_conference.email_otp_model"/>
+			</t>
+		</t>
+	</template>
+</odoo>

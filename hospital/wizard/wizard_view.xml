@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<odoo>
+		<data>
+			<!-- FORM VIEW -->
+			<record id="patient_wizard_form" model="ir.ui.view">
+				<field name="name">hospital.wizard.form</field>
+				<field name="model">hospital.wizard</field>
+				<field name="arch" type="xml">
+					<form>
+						<sheet>
+							<group>
+								<field name="name"/>
+								<field name="age"/>
+							</group>
+							<footer>
+								<button name="update_patient" string="Create Patient" type="object" class="btn-primary"/>
+								<button string="Cancel" class="btn-secondary" special="cancel"/>
+							</footer>
+						</sheet>
+					</form>
+				</field>
+			</record>
+
+			<!-- ACTION -->
+			<record id="patient_wizard_action" model="ir.actions.act_window">
+				<field name="name">Patient Wizard</field>
+				<field name="res_model">hospital.wizard</field>
+				<field name="view_mode">form</field>
+				<field name="target">new</field>      
+			</record>
+		</data>
+	</odoo>

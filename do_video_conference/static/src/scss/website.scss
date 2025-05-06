@@ -1,0 +1,111 @@
+$grey-color: #EEE;
+$brand-warning: #F0AD4E;
+$brand-danger: #D9534F;
+$brand-success: #449D44;
+
+.website_ir_attachment_list {
+  max-height: 500px;
+  overflow: auto;
+  .mt_attachment_rightside
+  {
+    top: 0px;
+    position: absolute;
+    right: 0;
+    .dropdown-toggle::after
+    {
+      display: none;
+    }
+  }
+}
+
+#calendar_event_communication {
+  .js_publish_management {
+    display: none !important;
+  }
+
+  .o_portal_chatter_attachment_btn {
+    display: none !important;
+  }
+}
+#participant_section
+{
+	.list_participant
+	{
+		margin: 5px 15px;
+    display: inline-block;
+	}
+}
+.dot {
+  display: inline-block;
+  border-radius: 50%;
+  width: 50%;
+  background-color: $grey-color;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+
+  &.dot-success {
+    background-color: $brand-success;
+  }
+
+  &.dot-warning {
+    background-color: $brand-warning;
+  }
+
+  &.dot-danger {
+    background-color: $brand-danger;
+  }
+
+  &.dot-sm {
+    height: 10px;
+    width: 10px;
+  }
+
+  &.dot-lg {
+    margin: 0 4px;
+    height: 20px;
+    width: 20px;
+  }
+}
+.o_metting_survery
+{
+  .o_livechat_button
+  {
+    display: none;
+  }
+}
+.checked_in_d_none
+{
+  display: none;
+}
+.checked_out_d_none
+{
+  display: block;
+}
+.div_center
+{
+  margin: 0 auto;
+}
+.perview_full_screen
+{
+  position: absolute;
+  right: 30px;
+}
+.background_gray
+{
+  background-color:gray;
+}
+.background_white
+{
+  background-color:white;
+}
+.participant_grid_stack_item_show
+{
+  position: absolute !important;
+  top: 10px !important;
+  left: 20% !important;
+}
+.height_500
+{
+  height: 500px !important;
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- list VIEW -->
+		<record id="list_medicine_view" model="ir.ui.view">
+			<field name="name">hospital.medicine.list</field>
+			<field name="model">hospital.medicine</field>
+			<field name="arch" type="xml">
+				<list>
+					<field name="medicine_index"/>
+					<field name="name"/>
+				</list>
+			</field>
+		</record>
+
+		<record id="list_medicine_search" model="ir.ui.view">
+			<field name="name">hospital.medicine.search</field>
+			<field name="model">hospital.medicine</field>
+			<field name="arch" type="xml">
+				<search  string="hospital Search">
+					<field name="name"/>
+					<field name="medicine_index"/>
+				</search>
+			</field>
+		</record>
+
+		<!-- <record id="hospital_medicine_kanban_view" model="ir.ui.view">
+			<field name="name">hospital.medicine.kanban.view</field>
+			<field name="model">hospital.medicine</field>
+			<field name="arch" type="xml">
+				<kanban string ="hospital kanban" class="o_res_partner_kanban">
+					<templates>
+						<t t-name ="kanban-box">
+							<div class = "oe_kanban_global_click" style="background-color:#f6f7ad;color:#646609">
+								<div>
+									<ul style="list-style-type:none;">
+										<li>
+											<b>Name: </b>
+											<field name="name"/>
+										</li>	
+										<li>
+											<b>ID: </b>
+											<field name="medicine_index"/>
+										</li>	
+									</ul>
+								</div>									
+							</div>
+						</t>	
+					</templates>
+                </kanban>
+			</field>
+		</record>  -->
+		
+		
+		<!-- FORM VIEW -->
+		<record id="form_medicine_view" model="ir.ui.view">
+			<field name="name">hospital.medicine.form</field>
+			<field name="model">hospital.medicine</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="medicine_index"/>
+								<field name="name"/>
+							</group>
+						</group>
+					</sheet>
+					<chatter/>
+				</form>
+			</field>
+		</record>s
+
+		<!-- ACTION -->
+		<record id="action_medicine" model="ir.actions.act_window">
+			<field name="name">Medicine</field>
+			<field name="res_model">hospital.medicine</field>
+			<field name="view_mode">search,list,form</field>
+		</record>
+	</data>
+</odoo>

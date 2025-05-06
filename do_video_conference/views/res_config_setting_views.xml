@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.video.conf</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="65"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <app data-string="Video Conference" string="Video Conference" name="video_conference" >
+                        <block title="JITSI Video Conference" name="jitsi_video_conference_setting_container">
+                            <setting string="JITSI Video Conference" help="">
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <div>
+                                            <label for="jitsi_meet_url" string="Package" class="col-2 o_light_label"/>
+                                            <field name="jitsi_meet_url" />
+                                        </div>
+                                        <div>
+                                            <label for="jitsi_meet_domain" string="Package" class="col-2 o_light_label"/>
+                                            <field name="jitsi_meet_domain" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </setting>
+                        </block>
+                        <block title="BigBlueButton Video Conference" name="BigBlueButton_video_setting_container">
+                            <setting string="BigBlueButton Video Conference" help="">
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <div>
+                                            <label for="bigbluebutton_url" string="Package" class="col-2 o_light_label"/>
+                                            <field name="bigbluebutton_url" />
+                                        </div>
+                                        <div>
+                                            <label for="bigbluebutton_secret" string="Package" class="col-2 o_light_label"/>
+                                            <field name="bigbluebutton_secret" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </setting>
+                        </block>
+                    </app>
+                </xpath>
+                
+                <!--  <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Video Conference" string="Video Conference"
+                         data-key="do_video_conference">
+                        <h2>JITSI Video Conference</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="jitsi_meet_url"/>
+                                    <div>
+                                        <field name="jitsi_meet_url"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="jitsi_meet_domain"/>
+                                    <div>
+                                        <field name="jitsi_meet_domain"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>BigBlueButton Video Conference</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="bigbluebutton_url"/>
+                                    <div>
+                                        <field name="bigbluebutton_url"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="bigbluebutton_secret"/>
+                                    <div>
+                                        <field name="bigbluebutton_secret" password="True"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath> -->
+            </field>
+        </record>
+
+        <record id="action_vidoe_conference_configuration" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'do_video_conference'}</field>
+        </record>
+
+        <!-- <menuitem id="menu_video_conference_global_settings" name="Settings124" parent="calendar.calendar_menu_config"
+                  sequence="99" action="action_vidoe_conference_configuration" groups="base.group_system"/> -->
+    </data>
+</odoo>

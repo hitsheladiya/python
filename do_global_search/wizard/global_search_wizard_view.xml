@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+
+	<record id="view_global_search_wizard_form" model="ir.ui.view">
+		<field name="name">global.search.wizard.form</field>
+		<field name="model">global.search.wizard</field>
+		<field name="arch" type="xml">
+			<form string="Custom Wizard">
+				<sheet>
+					<group>
+						<field name="model_id" required="1" context="{'change_from_field':1}"/>
+						<div style="display: none;">
+							<field name="model_name" />
+						</div>
+					</group>
+					<separator string="Rule Definition (Domain Filter)"/>
+					<field name="domain" nolabel="1"/>
+					<footer>
+						<button string="Open" type="object" name="action_open" class="btn-primary"/>
+						<button string="Close" class="btn-secondary" special="cancel"/>
+						<button name="set_domain" string="Set Domain" type="object" class="btn-primary" context="{'domain_dialogue':'1'}" required="1"/>
+					</footer>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_global_search_wizard" model="ir.actions.act_window">
+		<field name="name">Global Search</field>
+		<field name="res_model">global.search.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+</odoo>

@@ -1,0 +1,18 @@
+<odoo>
+	<record id="view_order_form_inherit_credit" model="ir.ui.view">
+		<field name="name">sale.order.form.inherit</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form"/>
+		<field name="arch" type="xml">
+			<!-- <xpath expr="//header" position="inside">
+				<button name="action_confirm" type="object"
+					string="Request Credit Limit Increase"
+					class="oe_highlight"
+					t-attf-class="d-none if not user_has_groups('skylark_credit_limit_approval.group_credit_limit_approval')"/>      
+			</xpath> -->
+			<xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="amount"/>
+            </xpath>
+		</field>
+	</record>
+</odoo>

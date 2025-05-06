@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- TREE VIEW -->
+		<record id="tree_school_view" model="ir.ui.view">
+			<field name="name">school.school.list</field>
+			<field name="model">school.school</field>
+			<field name="arch" type="xml">
+				<list>
+					<field name="name"/>
+				</list>
+			</field>
+		</record>
+		
+		<!-- FORM VIEW -->
+		<record id="form_school_view" model="ir.ui.view">
+			<field name="name">school.school.form</field>
+			<field name="model">school.school</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="address"/>
+								<field name="course_ids"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- ACTION -->
+		<record id="action_school" model="ir.actions.act_window">
+			<field name="name">School</field>
+			<field name="res_model">school.school</field>
+			<field name="view_mode">list,form</field>
+		</record>
+	</data>
+</odoo>

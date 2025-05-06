@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- TREE VIEW -->
+		<record id="tree_medicinename_view" model="ir.ui.view">
+			<field name="name">hospital.medicinename.list</field>
+			<field name="model">hospital.medicinename</field>
+			<field name="arch" type="xml">
+				<list>
+					<field name="name"/>
+					<field name="medicine_index"/>
+				</list>
+			</field>
+		</record>
+		
+		<!-- FORM VIEW -->
+		<record id="form_medicinename_view" model="ir.ui.view">
+			<field name="name">hospital.medicinename.form</field>
+			<field name="model">hospital.medicinename</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="medicine_index"/>
+							</group>
+						</group>
+					</sheet>
+					<chatter/>
+				</form>
+			</field>
+		</record>
+
+		<!-- ACTION -->
+		<record id="action_medicinename" model="ir.actions.act_window">
+			<field name="name">Medicine Name</field>
+			<field name="res_model">hospital.medicinename</field>
+			<field name="view_mode">list,form</field>
+		</record>
+	</data>
+</odoo>

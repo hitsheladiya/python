@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<!-- list VIEW -->
+		<record id="list_patient_view" model="ir.ui.view">
+			<field name="name">hospital.patient.list</field>
+			<field name="model">hospital.patient</field>
+			<field name="arch" type="xml">
+				<list>
+					<field name="name"/>
+					<field name="age"/>
+				</list>
+			</field>
+		</record>
+
+		<record id="list_patient_search" model="ir.ui.view">
+			<field name="name">hospital.patient.search</field>
+			<field name="model">hospital.patient</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="age"/>
+					<field name="mobile_no"/>
+					<field name="patients_ids"/>
+					<field name="patient_ids" filter_domain="['|',('patients_ids','ilike',self),('patient_ids','ilike',self)]"/>
+					<separator/>
+					<filter string="Male" name="male" domain="[('gender', '=', 'male')]"/>
+					<filter string="Female" name="female" domain="[('gender', '=', 'female')]"/>
+					<group string ="group by" expand="4">
+						<filter string="gender" name="gender" context="{'group_by':'gender'}"/>
+					</group>	 
+				</search>
+			</field>
+		</record>
+
+	    <record id="hospital_patient_kanban_view" model="ir.ui.view">
+			<field name="name">hospital.patient.kanban.view</field>
+			<field name="model">hospital.patient</field>
+			<field name="arch" type="xml">
+				<kanban string ="hospital kanban" class="o_res_partner_kanban">
+					<field name="id"/>
+					<templates>
+						<t t-name ="card">
+							<div class = "oe_kanban_global_click" style="height:220px; background-color:#cef7f2; color:#117364;">
+								<div style="width:30%; float:left; display:inline-block;"> 
+									<!-- <img alt="Avatar" t-att-src="kanban_image('hospital.patient', 'image', record.id.raw_value)" style="height:120px; width:95px;"/> -->
+									<field name="image" widget="image" options="{'size': [100, 130]}" alt="Channel"/>
+								</div>	
+								<div style="width:70%; float:right; display:inline-block;">
+									<ul style="list-style-type:none;">
+										<li>
+											<b>Name: </b>
+											<field name="name"/>
+										</li>	
+										<li>
+											<b>Age: </b>
+											<field name="age"/>
+										</li>	
+									    <li>
+											<b>Mobile: </b>
+											<field name="mobile_no"/>
+										</li>
+										<li>
+											<b>Gender: </b>
+											<field name="gender"/>
+										</li><li>
+											<b>Hospital Details: </b>
+											<field name="patient_ids"/>
+										</li>
+									</ul>
+								</div>									
+							</div>
+						</t>	
+					</templates>
+                </kanban>
+			</field>
+		</record> 
+			
+		<!-- FORM VIEW --> 
+		<record id="form_patient_view" model="ir.ui.view">
+			<field name="name">hospital.patient.form</field>
+			<field name="model">hospital.patient</field>
+			<field name="arch" type="xml">
+				<form>
+						<header>
+                        	<button name="%(patient_wizard_action)d" string="Update Info" type="action" class="oe_highlight"/>
+                        </header>	
+					<sheet>
+						<field name="image" widget="image" style="width:90px; height:150px;"/>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="age"/>
+								<field name="date" widget="date"/>
+								<field name="gender" widget="radio"/>
+								<field name="mobile_no" widget="phone"/>
+								<field name="patient_ids"/>
+								<field name="patients_ids" widget="many2many_tags"/>
+							</group>
+						</group>
+					</sheet>
+					<chatter/>
+				</form>
+			</field>
+		</record>
+
+		<!-- ACTION -->
+		<record id="action_patient" model="ir.actions.act_window">
+			<field name="name">Patient</field>
+			<field name="res_model">hospital.patient</field>
+			<field name="view_mode">search,kanban,list,form</field>
+		</record>
+	</data>
+</odoo>
+
+
+
+

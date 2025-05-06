@@ -1,0 +1,8 @@
+<odoo>
+    <menuitem id="menu_natuber_root" name="Natuber" sequence="1"/>
+    
+    <menuitem id="menu_natuber_delivery_note"
+                parent="menu_natuber_root"
+                name="Delivery Notes"
+                action="action_natuber_delivery_note"/>
+</odoo>

@@ -1,0 +1,8 @@
+<odoo>
+  <record id="crm_tag_verified" model="crm.tag">
+    <field name="name">Verified</field>
+  </record>
+  <record id="crm_tag_not_verified" model="crm.tag">
+    <field name="name">Not Verified</field>
+  </record>
+</odoo>

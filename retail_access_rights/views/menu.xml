@@ -1,0 +1,29 @@
+<odoo>
+    <menuitem id="sale.menu_sale_order"
+                name="Orders"
+                parent="sale.sale_order_menu"
+                action="sale.action_orders"
+                groups="sales_team.group_sale_salesman,retail_access_rights.group_inventory_staff"
+                sequence="20"/>
+
+    <menuitem id="sale.menu_sale_order"
+                name="Orders"
+                parent="sale.sale_order_menu"
+                action="sale.action_orders"
+                groups="sales_team.group_sale_salesman,retail_access_rights.group_cashier"
+                sequence="30"/>
+
+    <menuitem id="sale.menu_sale_order"
+                name="Orders"
+                parent="sale.sale_order_menu"
+                action="sale.action_orders"
+                groups="sales_team.group_sale_salesman,retail_access_rights.group_store_manager"
+                sequence="40"/>
+
+    <menuitem id="sale.menu_sale_order"
+                name="Orders"
+                parent="sale.sale_order_menu"
+                action="sale.action_orders"
+                groups="sales_team.group_sale_salesman,retail_access_rights.group_admin"
+                sequence="50"/>
+</odoo>

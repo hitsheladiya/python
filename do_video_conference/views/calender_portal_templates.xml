@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home_meetings" name="Meetings" inherit_id="portal.portal_my_home" customize_show="True" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_client_category_enable" t-value="True"/>
+        </xpath>        
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/account/static/src/img/Bill.svg'"/>
+                <t t-set="title">Sessions</t>
+                <t t-set="url" t-value="'/my/meetings'"/>
+                <t t-set="text">Calendar Sessions</t>
+                <t t-set="placeholder_count" t-value="'meeting_count'"/>
+            </t>
+        </div>
+    </template>
+
+    <template id="portal_layout" name="Portal layout: calender menu entry" inherit_id="portal.portal_breadcrumbs" priority="40">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'meeting' or meeting" t-attf-class="breadcrumb-item #{'active ' if not meeting else ''}">
+                <a t-if="meeting" t-attf-href="/my/meetings?{{ keep_query() }}">Sessions</a>
+                <t t-else="">Sessions</t>
+            </li>
+            <li t-if="meeting" class="breadcrumb-item active">
+                <span t-field="meeting.name" />
+            </li>
+        </xpath>
+    </template>
+    
+    <template id="portal_my_meetings" name="My Sessions">
+        <t t-call="portal.portal_layout">
+            <t t-set="pageName" t-value="'meeting_portal_page'" />
+            <div class="row" groups="do_video_conference.group_website_meeting_admin">
+                <div class="col-md-12 text-right mt16">
+                    <a href="/my/meeting/create" class="btn btn-primary">
+                        <i class="fa fa-plus" />
+                        Create
+                    </a>
+                </div>
+            </div>
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Sessions</t>
+            </t>
+            <t t-if="not meetings">
+                <div class="alert alert-warning mt8" role="alert">
+                    There are no Sessions.
+                </div>
+            </t>
+            <t t-if="meetings" t-call="portal.portal_table">
+                <thead>
+                    <tr>
+                        <th>Conferenza</th>
+                        <th class="text-center">Inizio</th>
+                        <th class="text-left">Stop</th>
+                        <th class="text-left">Attendees</th>
+                        <th class="text-left">Video Conference Type</th>
+                        <th class="text-left">Joing Session</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="meetings" t-as="meeting">
+                        <td>
+                            <a t-attf-href="/my/meeting/#{meeting.id}?{{ keep_query() }}">
+                                <span t-field="meeting.name" />
+                            </a>
+                        </td>
+                        <td>
+                            <span t-field="meeting.start" />
+                        </td>
+                        <td>
+                            <span t-field="meeting.stop" />
+                        </td>
+                        <td class="text-left">
+                            <t t-foreach="meeting.partner_ids" t-as="partner">
+                                <span class="badge badge-pill badge-info" t-att-title="partner.name" t-esc="partner.name" />
+                            </t>
+                        </td>
+                        <td>
+                            <span t-field="meeting.conference_type" />
+                        </td>
+                        <td>
+                            <t t-if="meeting.closed">
+                                <span class="alert alert-warning">Closed</span>
+                            </t>
+                            <t t-if="not meeting.closed">
+                                <a t-att-href="meeting.url" class="btn btn-link" target="_new">Join Session</a>
+                            </t>
+                        </td>
+                        <td groups="do_video_conference.group_website_meeting_admin">
+                            <a t-attf-href="/my/meeting/#{meeting.id}?mode=edit" class="btn btn-info">
+                                <i class="fa fa-pencil-square-o" />
+                                Edit
+                            </a>
+                        </td>
+                        <td t-if="not meeting.closed" groups="do_video_conference.group_website_meeting_admin">
+                            <a t-attf-href="/my/meeting/#{meeting.id}?mode=closed" class="btn btn-danger">
+                                <i class="fa fa-times" />
+                                Close Session
+                            </a>
+                        </td>
+                        <td t-if="meeting.closed" groups="do_video_conference.group_website_meeting_admin">
+                            <a t-attf-href="/my/meeting/#{meeting.id}?mode=reopen" class="btn btn-primary">
+                                <i class="fa fa-refresh" />
+                                Reopen Session
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+    
+    <template id="portal_meeting_form_view">
+        <t t-if="meeting and meeting.id">
+            <t t-set="url" t-value="'/my/meeting/' + str(meeting.id)" />
+        </t>
+        <t t-if="not meeting">
+            <t t-set="url" t-value="'/my/meeting/create'" />
+        </t>
+        <div class="row" t-if="error">
+            <div class="col-md-12">
+                <t t-if="error" t-foreach="error.get('error_message', [])" t-as="err">
+                    <h4 class="text-danger" t-esc="err" />
+                </t>
+            </div>
+        </div>
+        <form t-attf-action="#{url}" method="post" class="o_portal_meeting_details" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <label for="name">Session Subject *</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Name" t-att-value="meeting and meeting.name" t-att-readonly="mode == 'readonly'" required="required" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <label for="partner_ids">Attendees *</label>
+                            <input type="text" name="partner_ids" class="form-control js_select2" id="partner_ids" placeholder="Attendees" t-attf-data-init-value="#{meeting.get_select_json_dumps('partner_ids', 'name') if meeting and meeting.partner_ids else ''}" data-modal="res.partner" data-field-name="name" data-domain="[]" value="Attendees" t-att-readonly="mode == 'readonly'" required="required" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <label for="start_datetime">Start Time *</label>
+                            <t t-set='start_date_formatted' t-value="meeting.get_date_format(meeting.start.strftime('%Y-%m-%d %H:%M:%S')) if meeting and meeting.start else ''"/>
+                            <div class="o_website_form_datetime input-group date" id="start_datetime" data-target-input="nearest">
+                                <!-- <input type="text" class="form-control datetimepicker-input o_website_form_input" data-target="#start_datetime" name="start" required="required" t-att-readonly="mode == 'readonly'" t-att-value="start_date_formatted" />
+                                <div class="input-group-append" data-target="#start_datetime" data-toggle="datetimepicker">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                </div> -->
+                                <input type="datetime-local" class="form-control datetimepicker-input o_website_form_input" data-target="#start_datetime" name="start" required="required" t-att-readonly="mode == 'readonly'" t-att-value="start_date_formatted" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <label for="stop">Stop Time *</label>
+                            <t t-set='stop_date_formatted' t-value="meeting.get_date_format(meeting.stop.strftime('%Y-%m-%d %H:%M:%S')) if meeting and meeting.stop else ''"/>
+                            <div class="o_website_form_datetime input-group date" id="stop" data-target-input="nearest">
+                                <!-- <input type="text" class="form-control datetimepicker-input o_website_form_input" data-target="#stop" name="stop" required="required" t-att-readonly="mode == 'readonly'" t-att-value="stop_date_formatted" />
+                                <div class="input-group-append" data-target="#stop" data-toggle="datetimepicker">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                </div> -->
+                                <input type="datetime-local" class="form-control datetimepicker-input o_website_form_input stop" name="stop" required="required" t-att-readonly="mode == 'readonly'" t-att-value="stop_date_formatted"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <label for="duration">Duration</label>
+                            <input type="text" class="form-control" name="duration" id="duration" placeholder="Duration" t-att-value="meeting and meeting.duration" t-att-readonly="mode == 'readonly'" />
+                            <span>Hours</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="video_conference" id="video_conference" t-att-readonly="mode == 'readonly'" t-att-disabled="mode == 'readonly'" t-att-checked="meeting and meeting.video_conference" />
+                                <label class="form-check-label" for="video_conference">
+                                    Video Conference
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <label for="duration">Video Conference Type</label>
+                            <select name="conference_type" class="form-control" t-att-readonly="mode == 'readonly'">
+                                <option value=""></option>
+                                <option value="jitsi" t-att-selected="meeting.conference_type == 'jitsi' if meeting else 'selected'">
+                                    JITSI
+                                </option>
+                                <option value="bigbluebutton" t-att-selected="meeting and meeting.conference_type == 'bigbluebutton'">Big Blue
+                                    Button
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row field_do_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <label for="jitsi_password">JITSI Password</label>
+                            <input type="text" class="form-control" name="jitsi_password" id="jitsi_password" placeholder="Password" t-att-value="meeting and meeting.jitsi_password" t-att-readonly="mode == 'readonly'" />
+                        </div>
+                    </div>
+                    <div class="form-row field_do_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="chat_jitsi" id="chat_jitsi" t-att-readonly="mode == 'readonly'" t-att-disabled="mode == 'readonly'" t-att-checked="meeting and meeting.chat_jitsi" />
+                                <label class="form-check-label" for="chat_jitsi">
+                                    JITSI Chat
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row field_do_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="anonymous_participant" id="anonymous_participant" t-att-readonly="mode == 'readonly'" t-att-disabled="mode == 'readonly'" t-att-checked="meeting and meeting.anonymous_participant" />
+                                <label class="form-check-label" for="anonymous_participant">
+                                    Anonymous Participant
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row field_bbb_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <label for="jitsi_password">BigBlueButton Meeting ID *</label>
+                            <input type="text" class="form-control" name="bbb_meeting_id" id="bbb_meeting_id" placeholder="BigBlueButton Meeting ID" t-att-value="meeting and meeting.bbb_meeting_id" t-att-readonly="mode == 'readonly'" />
+                        </div>
+                    </div>
+                    <div class="form-row field_bbb_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <label for="bbb_attendeePW">BigBlueButton Attendee Password *</label>
+                            <input type="text" class="form-control" name="bbb_attendeePW" id="bbb_attendeePW" placeholder="BigBlueButton Attendee Password" t-att-value="meeting and meeting.bbb_attendeePW" t-att-readonly="mode == 'readonly'" />
+                        </div>
+                    </div>
+                    <div class="form-row field_bbb_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <label for="bbb_attendeePW">BigBlueButton Moderator Password *</label>
+                            <input type="text" class="form-control" name="bbb_moderatorPW" id="bbb_moderatorPW" placeholder="BigBlueButton Moderator Password" t-att-value="meeting and meeting.bbb_moderatorPW" t-att-readonly="mode == 'readonly'" />
+                        </div>
+                    </div>
+                    <div class="form-row field_bbb_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="bbb_allow_to_record_meeting" id="bbb_allow_to_record_meeting" t-att-readonly="mode == 'readonly'" t-att-disabled="mode == 'readonly'" t-att-checked="meeting and meeting.bbb_allow_to_record_meeting" />
+                                <label class="form-check-label" for="bbb_allow_to_record_meeting">
+                                    Allow to Recording Session
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row field_bbb_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="bbb_allow_start_stop_recording" id="bbb_allow_start_stop_recording" t-att-readonly="mode == 'readonly'" t-att-disabled="mode == 'readonly'" t-att-checked="meeting and meeting.bbb_allow_start_stop_recording" />
+                                <label class="form-check-label" for="bbb_allow_start_stop_recording">
+                                    Allow Start and Stop Recording
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row field_bbb_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="bbb_auto_start_recording" id="bbb_auto_start_recording" t-att-readonly="mode == 'readonly'" t-att-disabled="mode == 'readonly'" t-att-checked="meeting and meeting.bbb_auto_start_recording" />
+                                <label class="form-check-label" for="bbb_auto_start_recording">
+                                    Auto Start Recording
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row field_bbb_video_conference">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="bbb_mute_on_start" id="bbb_mute_on_start" t-att-readonly="mode == 'readonly'" t-att-disabled="mode == 'readonly'" t-att-checked="meeting and meeting.bbb_mute_on_start" />
+                                <label class="form-check-label" for="bbb_mute_on_start">
+                                    Mute on Start
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input meeting_input_checkbox" name="is_otp_enable" id="is_otp_enable" t-att-readonly="mode == 'readonly'" t-att-checked="meeting and meeting.is_otp_enable" t-att-disabled="mode == 'readonly'" data-hide-checked="otp_type_email" />
+                                <label class="form-check-label" for="is_otp_enable">
+                                    OTP Enable
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input meeting_input_checkbox" name="otp_type_email" id="otp_type_email" t-att-readonly="mode == 'readonly'" t-att-checked="meeting and meeting.otp_type_email" t-att-disabled="mode == 'readonly'" />
+                                <label class="form-check-label" for="otp_type_email">
+                                    Email OTP
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row" t-if="meeting and meeting.url">
+                        <div class="mb-3 col-md-12">
+                            <label for="url">
+                                URL:
+                            </label>
+                            <a t-att-href="meeting.url" target="_new">
+                                <t t-esc="meeting.url" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input meeting_input_checkbox" name="document_list_preview" id="document_list_preview" t-att-readonly="mode == 'readonly'" t-att-disabled="mode == 'readonly'" t-att-checked="meeting and meeting.document_list_preview" data-hide-checked="document_list_preview_user_ids" />
+                                <label class="form-check-label" for="document_list_preview">
+                                    Document list and preview
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <label for="document_list_preview_user_ids">Document Upload Permission Users</label>
+                            <input type="text" name="document_list_preview_user_ids" class="form-control js_select2" id="document_list_preview_user_ids" placeholder="Document Upload Permission Users" t-attf-data-init-value="#{meeting.get_select_json_dumps('document_list_preview_user_ids', 'name') if meeting and meeting.document_list_preview_user_ids else ''}" data-modal="res.users" data-field-name="name" data-domain="[]" value="Users" t-att-readonly="mode == 'readonly'" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input meeting_input_checkbox" name="document_delete" id="document_delete" t-att-readonly="mode == 'readonly'" t-att-disabled="mode == 'readonly'" t-att-checked="meeting and meeting.document_delete" data-hide-checked="document_delete_ids" />
+                                <label class="form-check-label" for="document_delete">
+                                    Document Delete
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="mb-3 col-md-12">
+                            <label for="document_delete_ids">Document Delete Permission Users</label>
+                            <input type="text" name="document_delete_ids" class="form-control js_select2" id="document_delete_ids" placeholder="Document Delete Permission Users" t-attf-data-init-value="#{meeting.get_select_json_dumps('document_delete_ids', 'name') if meeting and meeting.document_delete_ids else ''}" data-modal="res.users" data-field-name="name" data-domain="[]" value="Users" t-att-readonly="mode == 'readonly'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" t-if="meeting">
+                <div class="col-12">
+                    <ul class="nav nav-tabs" id="meetingTabs" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active" id="attendees-tab" data-bs-toggle="tab" data-bs-target="#attendees_tab" type="button" role="tab" aria-controls="attendees_tab" aria-selected="true">
+                                Attendees History
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="personal-notes-tab" data-bs-toggle="tab" data-bs-target="#personal_notes" type="button" role="tab" aria-controls="personal_notes" aria-selected="false">
+                                Personal Notes
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="attachment-history-tab" data-bs-toggle="tab" data-bs-target="#attachment_history" type="button" role="tab" aria-controls="attachment_history" aria-selected="false">
+                                Attachment History
+                            </button>
+                        </li>
+                        <li class="nav-item" t-if="meeting.bbb_meeting_id and meeting.conference_type == 'bigbluebutton'">
+                            <button class="nav-link" id="bbb-recording-tab" data-bs-toggle="tab" data-bs-target="#bbb_recording" type="button" role="tab" aria-controls="bbb_recording" aria-selected="false">
+                                BigBlueButton Recording
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="meetingTabsContent">
+                        <!-- Attendees History -->
+                        <div class="tab-pane fade show active pt-2" id="attendees_tab" role="tabpanel" aria-labelledby="attendees-tab">
+                            <table t-if="meeting.participant_history_ids" class="table table-striped table-hover" id="participant_history_ids">
+                                <thead>
+                                    <tr>
+                                        <th>Participant Name</th>
+                                        <th>Join Datetime</th>
+                                        <th>Left Datetime</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="meeting.participant_history_ids" t-as="history_id">
+                                        <td><t t-esc="history_id.name" /></td>
+                                        <td><span t-field="history_id.join_datetime" /></td>
+                                        <td><span t-field="history_id.left_datetime" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Personal Notes -->
+                        <div class="tab-pane fade pt-2" id="personal_notes" role="tabpanel" aria-labelledby="personal-notes-tab">
+                            <table t-if="meeting.notes_ids" class="table table-striped table-hover" id="notes_ids">
+                                <thead>
+                                    <tr>
+                                        <th>Participant Name</th>
+                                        <th>Note</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="meeting.notes_ids" t-as="note_id">
+                                        <td><t t-if="note_id.user_ids" t-esc="note_id.user_ids[0].name" /></td>
+                                        <td><span t-field="note_id.name" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Attachment History -->
+                        <div class="tab-pane fade pt-2" id="attachment_history" role="tabpanel" aria-labelledby="attachment-history-tab">
+                            <table t-if="meeting.attachment_history_ids" class="table table-striped table-hover" id="attachment_history_ids">
+                                <thead>
+                                    <tr>
+                                        <th>Participant Name</th>
+                                        <th>Type</th>
+                                        <th>Action Datetime</th>
+                                        <th>Attachment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="meeting.attachment_history_ids" t-as="attachment_id">
+                                        <td><t t-esc="attachment_id.name" /></td>
+                                        <td><span t-field="attachment_id.type" /></td>
+                                        <td><span t-field="attachment_id.action_date" /></td>
+                                        <td><span t-field="attachment_id.attachment_id" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- BigBlueButton Recording -->
+                        <div class="tab-pane fade pt-2" id="bbb_recording" role="tabpanel" aria-labelledby="bbb-recording-tab" t-if="meeting.bbb_meeting_id and meeting.conference_type == 'bigbluebutton'">
+                            <table class="table table-striped table-hover" id="bbb_recording">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Recording URL</th>
+                                        <th>Participants</th>
+                                        <th>Size (KB)</th>
+                                        <th>Type</th>
+                                        <th>Published</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="meeting.get_bigbluebutton_meeting_recording()" t-as="recording">
+                                        <td><img t-attf-src="#{recording['images'][0]}" class="img-fluid" /></td>
+                                        <td><a t-att-href="recording['url']">Recording URL</a></td>
+                                        <td><t t-esc="recording['participants']" /></td>
+                                        <td><t t-esc="recording['size']" /></td>
+                                        <td class="text-capitalize"><t t-esc="recording['type']" /></td>
+                                        <td class="text-capitalize"><t t-esc="recording['published']" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <t t-if="meeting">
+                        <input type="hidden" name="id" t-att-value="meeting.id"></input>
+                    </t>
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                    <input type="hidden" name="mode" t-att-value="mode or False" />
+                    <t t-if="mode in ['edit', 'create']">
+                        <button type="submit" class="btn btn-primary btn-lg" name="edit_save">
+                            <i class="fa fa-save" />
+                            Save
+                        </button>
+                    </t>
+                </div>
+            </div>
+        </form>
+    </template>
+    
+    <template id="portal_my_meeting" name="My Meeting">
+        <t t-call="portal.portal_layout">
+            <t t-set="o_portal_fullwidth_alert">
+                <t t-if="meeting">
+                    <t t-call="portal.portal_back_in_edit_mode">
+                        <t t-set="backend_url" t-value="'/web#model=calendar.event&amp;id=%s&amp;view_type=form' % (meeting.id)" />
+                    </t>
+                </t>
+            </t>
+            <div id="meeting_content" class="o_portal_content col-12 col-lg-12 col-xxl-12">
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <h4>
+                            Session -
+                            <t t-if="meeting">
+                                <span t-field="meeting.name" />
+                            </t>
+                            <t t-else="">New</t>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 text-right" t-if="meeting and mode =='readonly'">
+                        <a t-attf-href="/my/meeting/#{meeting.id}?mode=edit" class="btn btn-info" groups="do_video_conference.group_website_meeting_admin">
+                            <i class="fa fa-pencil-square-o" />
+                            Edit
+                        </a>
+                        <t t-if="not meeting.closed">
+                            <a t-att-href="meeting.url" class="btn btn-primary" target="_new">Join Session</a>
+                            <a t-attf-href="/my/meeting/#{meeting.id}?mode=closed" class="btn btn-danger" groups="do_video_conference.group_website_meeting_admin">
+                                <i class="fa fa-times" />
+                                Close Session
+                            </a>
+                        </t>
+                        <t t-if="meeting.closed">
+                            <t t-if="meeting.closed">
+                                <span class="alert alert-warning">Closed</span>
+                            </t>
+                            <a t-attf-href="/my/meeting/#{meeting.id}?mode=reopen" class="btn btn-primary">
+                                <i class="fa fa-refresh" />
+                                Reopen Session
+                            </a>
+                        </t>
+                    </div>
+                </div>
+                <t t-call="do_video_conference.portal_meeting_form_view" />
+                <div id="meeting_communication" class="mt-4" t-if="meeting">
+                    <h3>Communication history</h3>
+                    <t t-call="portal.message_thread">
+                        <t t-set="object" t-value="meeting" />
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

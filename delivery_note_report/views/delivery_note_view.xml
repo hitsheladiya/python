@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_list_natuber_delivery_note" model='ir.ui.view'>
+        <field name="name">natuber.delivery.note.list</field>
+        <field name="model">natuber.delivery.note</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Note">
+                <field name="name"/>
+                <field name="partner_id"/>
+            </list>
+        </field>
+    </record>
+        
+    <record id="view_form_natuber_delivery_note" model="ir.ui.view">
+        <field name="name">natuber.delivery.note.form</field>
+        <field name="model">natuber.delivery.note</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Note">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="order_id"/>
+                        <field name="partner_id"/>
+                    </group>
+                    <group>
+                        <field name="order_line" widget="one2many_list"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_natuber_delivery_note" model="ir.actions.act_window">
+        <field name="name">Delivery Notes</field>
+        <field name="res_model">natuber.delivery.note</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

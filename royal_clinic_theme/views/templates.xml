@@ -1,0 +1,283 @@
+<odoo>
+  <template id="homepage_dental" name="Dental Homepage">
+    <t t-call="website.layout">
+      <div id="wrap" class="homepage-wrapper">
+        <!-- Hero Section -->
+        <div class="hero-banner text-center py-5 position-relative">
+          <div class="container text-white position-relative">
+            <h1 class="display-4 fw-bold">Your Smile, Our Passion</h1>
+            <p class="lead"><b>Modern dental care for the whole family</b></p>
+            <a href="/contact" class="btn btn-primary mt-3 px-4 py-2 button-text-color">Book an Appointment</a>
+          </div>
+        </div>
+      </div>
+      <section class="clinic-stats-section">
+        <div class="clinic-stats-box">
+          <h2>10K+</h2>
+          <p>Happy Patients</p>
+        </div>
+        <div class="clinic-stats-box">
+          <h2>15+</h2>
+          <p>Years of Experience</p>
+        </div>
+        <div class="clinic-stats-box">
+          <h2>25+</h2>
+          <p>Expert Staff</p>
+        </div>
+        <div class="clinic-stats-box">
+          <h2>100%</h2>
+          <p>Satisfaction Guarantee</p>
+        </div>
+      </section>
+      
+      <section class="certifications-section py-5">
+        <div class="container text-center">
+          <h2 class="section-title mb-4">Our Certifications And Accreditations</h2>
+          <p class="section-subtitle mb-5">Recognized by trusted institutions for excellence in dental care.</p>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <img src="/royal_clinic_theme/static/src/image/cert1.png" alt="Certification 1" class="cert-image mb-2"/>
+              <h5 class="fw-bold">ISO 9001:2015 Certified</h5>
+              <p>International standard for quality management systems.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+              <img src="/royal_clinic_theme/static/src/image/cert22.jpg" alt="Award 1" class="cert-image mb-2"/>
+              <h5 class="fw-bold">Best Dental Clinic Award</h5>
+              <p>Awarded for excellence in patient care and service.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+              <img src="/royal_clinic_theme/static/src/image/cert3.png" alt="Accreditation 1" class="cert-image mb-2"/>
+              <h5 class="fw-bold">NABH Accredited</h5>
+              <p>Certified for safety and quality standards by healthcare board.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="dental-tips py-5">
+        <div class="container text-center">
+          <h2 class="section-title mb-4">Dental Care Tips</h2>
+          <ul class="list-unstyled mt-3">
+            <li>✔ Brush twice a day with fluoride toothpaste</li>
+            <li>✔ Floss daily to remove plaque</li>
+            <li>✔ Avoid sugary foods and drinks</li>
+            <li>✔ Visit your dentist every 6 months</li>
+          </ul>
+        </div>
+      </section>
+      <section class="technology-section py-5 bg-light">
+        <div class="container text-center">
+          <h2 class="section-title mb-4">Advanced Dental Technology</h2>
+          <p>We use the latest dental equipment to ensure your comfort and safety, including digital X-rays, laser treatments, and sterilization systems.</p>
+        </div>
+      </section>
+      <section class="promo-section py-5 text-center">
+        <div class="container">
+          <a href="/contact" class="btn btn-primary button-text-color">
+             Get Your First Dental Checkup for Just ₹299! Book Now →
+          </a>
+        </div>
+      </section>
+    </t>
+  </template>
+  <template id="about_us_template" name="About Us Page">
+    <t t-call="website.layout">
+      <!-- Hero Banner -->
+      <div class="hero-banner3 text-center py-5 position-relative">
+        <div class="container text-white position-relative">
+          <h1 class="mb-4" style="font-size: 36px; font-weight: bold;">Experience Premium Dental Care</h1>
+          <p style="font-size: 18px;">Providing advanced dental care with a smile. Trusted by celebrities, loved by patients.</p>
+        </div>
+      </div>
+
+      <!-- Our Services -->
+      <section class="trusted-celeb-section py-5 text-center">
+        <div class="container py-5">
+          <h2 class="text-center section-title mb-3">Our Dental Services</h2>
+          <div class="row text-center">
+            
+            <div class="col-md-4 mb-4">
+              <div class="service-hover-box p-3">
+                <img src="/royal_clinic_theme/static/src/image/icon1.jpg" class="mb-2 service-img" />
+                <h4 class="mt-3">Cosmetic Dentistry</h4>
+                <p>Enhance your smile with advanced cosmetic treatments.</p>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <div class="service-hover-box p-3">
+                <img src="/royal_clinic_theme/static/src/image/iicon2.webp" class="mb-2 service-img" />
+                <h4 class="mt-3">Teeth Whitening</h4>
+                <p>Brighten your teeth with professional whitening services.</p>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <div class="service-hover-box p-3">
+                <img src="/royal_clinic_theme/static/src/image/icon3.png" class="mb-2 service-img" />
+                <h4 class="mt-3">Root Canal</h4>
+                <p>Painless root canal treatments using latest techniques.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="trusted-celeb-section py-5 text-center">
+        <div class="container">
+          <h2 class="section-title mb-3">Trusted by Celebrities</h2>
+          <p class="section-description mx-auto mb-5">
+            At Royal Dental Clinic, we are proud to be the choice of several well-known public figures, celebrities, and influencers. 
+            Our unmatched discretion and premium care make us a top-tier destination for high-profile clients.
+          </p>
+
+          <div class="celebrity-logos d-flex flex-wrap justify-content-center gap-4">
+            <img src="/royal_clinic_theme/static/src/image/celeb1.jpeg" alt="Celebrity Trust 1" class="celeb-logo"/>
+            <img src="/royal_clinic_theme/static/src/image/celeb2.jpg" alt="Celebrity Trust 2" class="celeb-logo"/>
+            <img src="/royal_clinic_theme/static/src/image/celeb3.jpg" alt="Celebrity Trust 3" class="celeb-logo"/>
+            <img src="/royal_clinic_theme/static/src/image/celeb4.png" alt="Celebrity Trust 4" class="celeb-logo"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us -->
+      <section class="why-choose-us-section py-5 text-center">
+        <div class="container">
+          <h2 class="section-title mb-4">Why Choose Us?</h2>
+          <ul class="why-choose-list list-unstyled">
+            <li>Experienced and Highly Qualified Dentists</li>
+            <li>Advanced Equipment And Modern Technology</li>
+            <li>Comfortable and Hygienic Clinic Environment</li>
+            <li>Personalized Care And Follow-up</li>
+            <li>High Patient Satisfaction Rate</li>
+          </ul>
+        </div>
+      </section>
+    </t>
+  </template>
+
+  <template id="our_team_template" name="Our Team Page">
+    <t t-call="website.layout">
+      <div class="hero-banner2 text-center py-5 position-relative">
+        <div class="container text-white position-relative">
+          <h1 class="mb-4" style="font-size: 36px; font-weight: bold;">Meet Our Expert Medical Team</h1>
+          <p style="font-size: 18px;">"Wherever the art of Medicine is loved, there is also a love of Humanity.”</p>
+        </div>
+      </div>
+      <section class="trusted-celeb-section py-5 text-center">
+        <div class="container py-5">
+          <h2 class="text-center section-title mb-3">Our Team</h2>
+          <div class="row justify-content-center">
+            <t t-foreach="doctors" t-as="doc">
+              <div class="col-md-4 mb-4 d-flex align-items-stretch">
+                <div class="doctor-card p-4 shadow-sm rounded w-100">
+                  <!-- Doctor Image -->
+                  <img t-att-src="doc['image']" alt="Doctor Image"
+                       class="img-fluid mb-3 doctor-image"/>
+
+                  <!-- Title (e.g., lek.) -->
+                  <p class="mb-1 doctor-title">
+                    <t t-esc="doc.get('title', '')"/>
+                  </p>
+
+                  <!-- Name Bold -->
+                  <h4 class="doctor-name">
+                    <t t-esc="doc['name']"/>
+                  </h4>
+
+                  <!-- Specialization -->
+                  <p class="doctor-specialization">
+                    <t t-esc="doc['specialization']"/>
+                  </p>
+
+                  <!-- Description -->
+                  <p class="doctor-description">
+                    <t t-esc="doc['description']"/>
+                  </p>
+                </div>
+              </div>
+            </t>
+          </div>
+        </div>
+      </section>
+    </t>
+  </template>
+  <template id="contact_template" name="Contact Page">
+    <t t-call="website.layout">
+      <div class="container py-5">
+        <section>
+          <form action="/contact/submit" method="post" class="custom-contact-form">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Your Name" required="required"/>
+            </div>
+
+            <div class="form-group">
+              <input type="text" name="phone" placeholder="Your Mobile Number" required="required"/>
+            </div>
+
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Your Email"/>
+            </div>
+
+            <div class="form-group">
+              <textarea name="message" placeholder="Your Message" required="required"></textarea>
+            </div>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </section>
+        <section class="clinic-info-section py-5">
+          <div class="container">
+            <div>
+              <h4 class="clinic-heading">Clinic Opening Hours</h4>
+              <ul class="clinic-list">
+                <li><strong>Monday – Saturday:</strong> 9:00 AM – 6:00 PM</li>
+                <li><strong>Sunday:</strong> Closed</li>
+              </ul>
+
+              <h4 class="clinic-heading mt-4">Clinic Location</h4>
+              <p class="clinic-address">
+                Royal Dental Clinic<br/>
+                123 Health Street, City, Country<br/>
+                <strong>Phone:</strong> +123 456 7890<br/>
+                <strong>Email:</strong> info@royalclinic.com
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </t>
+  </template>
+  <template id="for_patients_template" name="For Patients Page">
+    <t t-call="website.layout">
+      <section class="for-patients-section py-5">
+        <div class="container text-center">
+          <h2 class="section-title mb-4">For Patients</h2>
+          <p class="mb-4">Helpful resources and links for patients:</p>
+          <ul class="list-unstyled" style="font-size: 18px;">
+            <li class="mb-3">
+              <a href="https://www.nhp.gov.in/" target="_blank">National Health Portal of India</a>
+            </li>
+            <li class="mb-3">
+              <a href="https://www.ayushmanbharat.gov.in/" target="_blank">Ayushman Bharat Yojana</a>
+            </li>
+            <li class="mb-3">
+              <a href="https://main.mohfw.gov.in/" target="_blank">Ministry of Health and Family Welfare</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </t>
+  </template>
+  <template id="thank_you_template" name="Thank You Page">
+    <t t-call="website.layout">
+      <div class="container py-5">
+        <h2>Thank You!</h2>
+        <p>Your message has been sent. We’ll get back to you shortly.</p>
+      </div>
+    </t>
+  </template>
+</odoo>

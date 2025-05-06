@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-name="OpeningControlPopup" t-inherit="point_of_sale.OpeningControlPopup" t-inherit-mode="extension" owl="1">
+		<xpath expr="//textarea" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath>
+		<!-- <xpath expr="//input[hasclass('pos-input')]" position="attributes">
+			<attribute name="t-on-click">_onClickProductSearch</attribute>
+		</xpath> -->
+	</t>
+</templates>

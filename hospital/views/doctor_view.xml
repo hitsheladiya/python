@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- list VIEW -->
+		<record id="list_doctor_view" model="ir.ui.view">
+			<field name="name">hospital.doctor.list</field>
+			<field name="model">hospital.doctor</field>
+			<field name="arch" type="xml">
+				<list>
+					<field name="name"/>
+					<field name="type"/>
+				</list>
+			</field>
+		</record>
+			<!-- SEARCH VIEW -->
+		<record id="list_doctor_search" model="ir.ui.view">
+			<field name="name">hospital.doctor.search</field>
+			<field name="model">hospital.doctor</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="type"/>
+					<field name="doctor_ids" filter_domain="['|',('type','ilike',self),('doctor_ids','ilike',self)]"/>
+				</search>
+			</field>
+		</record>
+
+			<!-- KANBAN VIEW -->
+		<record id="hospital_doctor_kanban_view" model="ir.ui.view">
+			<field name="name">hospital.doctor.kanban.view</field>
+			<field name="model">hospital.doctor</field>
+			<field name="arch" type="xml">
+				<kanban string ="doctor kanban" class="o_res_partner_kanban">
+					<templates>
+						<t t-name ="card">
+							<div class = "oe_kanban_global_click" style="height:190px; background-color:#e3d0f0; color:#3a204b;"> 	  
+								<div style="width:30%; float:left;">
+									<!-- <img alt="Avatar" t-att-src="kanban_image('hospital.doctor', 'image', record.id.raw_value)" style="height:120px; width:90px"/> -->
+									<field name="image" widget="image" options="{'size': [100, 120]}" alt="Channel"/>
+								</div>
+								<div style="width:70%; float:right;" >	
+								<ul style="list-style-type:none;">
+									<li>
+										<b>Name: </b>
+										<field name="name"/>
+									</li>	
+									<li>
+										<b>Type: </b>
+										<field name="type"/>
+									</li>	
+								    <li>
+										<b>Hospital Details: </b>
+										<field name="doctor_ids"/>
+										</li>
+									</ul>
+								</div>									
+							</div>
+						</t>	
+					</templates>
+                </kanban>
+			</field>
+		</record> 
+		
+		<!-- FORM VIEW -->
+		<record id="form_doctor_view" model="ir.ui.view">
+			<field name="name">hospital.doctor.form</field>
+			<field name="model">hospital.doctor</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="type"/>
+								<field name="doctor_ids"/>
+							</group>
+						</group>
+					</sheet>
+					<chatter/>
+				</form>
+			</field>
+		</record>
+
+		<!-- ACTION -->
+		<record id="action_doctor" model="ir.actions.act_window">
+			<field name="name">Doctor</field>
+			<field name="res_model">hospital.doctor</field>
+			<field name="view_mode">search,kanban,list,form</field>
+		</record>
+	</data>
+</odoo>

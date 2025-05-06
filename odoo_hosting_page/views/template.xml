@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="odoo_hosting_template" name="Odoo Hosting">
+		<form action="/odoo-hosting" method="POST">
+			<input type="hidden" name="plan" id="selected_plan" value="" />
+			<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+			<t t-call="website.layout">
+				<t t-set="no_header" t-value="True"/>
+				<t t-set="no_footer" t-value="True"/>
+				<t t-set="assets" t-value="{'js': ['/odoo_hosting_page/static/src/js/otp_autojump.js']}" />
+				<div class="hero-banner3 hero-section mb-5 text-center d-flex align-items-center justify-content-center position-relative" style="background-image: url('/odoo_hosting_page/static/src/image/b2.webp'); background-size: cover; background-position: center; min-height: 400px;">
+					<div class="position-absolute w-100 h-100" style="background: rgba(0, 0, 0, 0.6); top: 0; left: 0;"></div>
+					<div class="container text-white position-relative">
+						<h1 class="mb-4" style="font-size: 36px; font-weight: bold;">Ready-to-Use Odoo Hosting</h1>
+						<p style="font-size: 18px;">"Lifetime free setup or a full-featured paid option."</p>
+					</div>
+				</div>
+				<section class="why-odoo py-5">
+					<div class="container">
+						<div class="row align-items-center">
+							<div class="col-md-6">
+								<p class="section-subtitle"><i class="fa fa-bolt" aria-hidden="true"></i> Why we need use odoo ?</p>
+								<h2 class="w3-large" style="font-family: 'Playfair Display', serif; font-size: 48px; color: black; margin-bottom: 10px;">
+									Global Consultancy<br/>
+									Empowering Your Growth
+								</h2>
+								<div class="row pt-4">
+									<div class="col-sm-6 mb-4">
+										<div class="icon-box">
+											<i class="fa fa-cubes icon-blue"></i>
+											<h4>Unified Platform for Every Business Need</h4>
+											<p>Odoo integrates all business applications — CRM, Sales, Inventory, HR, Accounting — into one cohesive system. This removes data silos, improves communication, and boosts productivity with real-time data across departments.</p>
+										</div>
+									</div>
+									<div class="col-sm-6 mb-4">
+										<div class="icon-box">
+											<i class="fa fa-line-chart icon-blue"></i>
+											<h4>Tailored to Fit Your Growth</h4>
+											<p>From startups to enterprises, Odoo can be customized to match your exact workflows. Its modular system allows you to start small and add apps as you grow — without disrupting operations.</p>
+										</div>
+									</div>
+									<div class="col-sm-6 mb-4">
+										<div class="icon-box">
+											<i class="fa fa-bullseye icon-blue"></i>
+											<h4>Intuitive and Clean Design</h4>
+											<p>No steep learning curve. Odoo offers a modern and responsive interface that users love. It’s designed for efficiency, reducing training time and increasing user adoption across teams.</p>
+										</div>
+									</div>
+									<div class="col-sm-6 mb-4">
+										<div class="icon-box">
+											<i class="fa fa-rocket icon-blue"></i>
+											<h4>Enterprise-Level Power Without the Price Tag</h4>
+											<p>Odoo’s open-source model offers powerful enterprise tools at a fraction of the cost compared to traditional ERPs. You get flexibility, community support, and continuous innovation — without vendor lock-in.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6 text-center">
+								<img src="/odoo_hosting_page/static/src/image/odoo2.png" alt="Odoo" class="img-fluid" style="max-width: 80%;"/>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="py-5 bg-white text-center">
+					<div class="container">
+						<p class="text-primary small mb-2"><i class="fa fa-trello"></i>  Odoo Applications</p>
+						<h2 class="mb-5 section-atitle" style="font-family: 'Playfair Display', serif; font-size: 35px; color: black; margin-bottom: 10px;">Odoo Apps Tailored for Your Business</h2>
+
+						<div class="row g-4 justify-content-center">
+							<div class="col-md-4 col-sm-6">
+								<div class="app-card position-relative">
+									<div class="card-body">
+										<img src="/odoo_hosting_page/static/src/image/finance.svg" class="img-fluid mb-3" alt="Accounting"/>
+										<h5>Accounting</h5>
+									</div>
+									<div class="hover-info" style="background-color: #74506A; padding: 15px; border-radius: 10px; color:white;">
+										<h6>Accounting App</h6>
+										<p>Accounting, Invoicing, Expenses, Spreadsheet (BI), Documents, and Sign are all part of Odoo's Finance apps that allow for inclusive financial management. </p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-6">
+								<div class="app-card position-relative">
+									<div class="card-body">
+										<img src="/odoo_hosting_page/static/src/image/website.svg" class="img-fluid mb-3" alt="Websites"/>
+										<h5>Website</h5>
+									</div>
+									<div class="hover-info" style="background-color: #74506A; padding: 15px; border-radius: 10px; color:white;">
+										<h6>Website App</h6>
+										<p>For a complete online presence Odoo's website apps include Website Builder, eCommerce, Blog, Forum, Live chat and eLearning. </p>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-6">
+								<div class="app-card position-relative">
+									<div class="card-body">
+										<img src="/odoo_hosting_page/static/src/image/sales.svg" class="img-fluid mb-3" alt="Sales"/>
+										<h5>Sale</h5>
+									</div>
+									<div class="hover-info" style="background-color: #74506A; padding: 15px; border-radius: 10px; color:white;">
+										<h6>Sale App</h6>
+										<p>Looking to boost your sales, Odoo's Sales apps contains CRM, Sales, POS Shop, POS Restaurant, Subscriptions, and Rental. </p>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-6">
+								<div class="app-card position-relative">
+									<div class="card-body">
+										<img src="/odoo_hosting_page/static/src/image/icon.svg" class="img-fluid mb-3" alt="Purchase"/>
+										<h5>Purchase</h5>
+									</div>
+									<div class="hover-info" style="background-color: #74506A; padding: 15px; border-radius: 10px; color:white;">
+										<h6>Purchase App</h6>
+										<p style="font-size:15px;">Odoo's Purchase module streamlines vendor management and automates purchase orders.
+										It ensures smart reordering, budget control, and smooth approvals.
+										Fully integrated with Inventory and Accounting for end-to-end procurement.</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-6">
+								<div class="app-card position-relative">
+									<div class="card-body">
+										<img src="/odoo_hosting_page/static/src/image/hr.svg" class="img-fluid mb-3" alt="HR"/>
+										<h5>HR</h5>
+									</div>
+									<div class="hover-info" style="background-color: #74506A; padding: 15px; border-radius: 10px; color:white;">
+										<h6>HR App</h6>
+										<p>Improving HR processes can be done through Odoo's HR apps which includes Employees, Recruitment, Time Off, Appraisals, Referrals, and Fleet. </p>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-6">
+								<div class="app-card position-relative">
+									<div class="card-body">
+										<img src="/odoo_hosting_page/static/src/image/marketing.svg" class="img-fluid mb-3" alt="Marketing"/>
+										<h5>Social Marketing</h5>
+									</div>
+									<div class="hover-info" style="background-color: #74506A; padding: 15px; border-radius: 10px; color:white;">
+										<h6>Social Marketing App</h6>
+										<p>Transform your marketing with Odoo's Marketing apps that involve Social Marketing, Email Marketing, SMS Marketing, Events, Marketing Automation, and Surveys</p>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="mt-5">
+							<a href="#"
+								 onclick="document.getElementById('popup-image').style.display='flex'; return false;"
+								 class="btn btn-primary rounded-pill mt-4 px-4 py-2 explore-btn">
+								 Other Odoo Apps
+							</a>
+							<div id="popup-image" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+									 background-color: rgba(0, 0, 0, 0.6); z-index: 9999; align-items: center; justify-content: center;">
+								
+								<div style="position: relative; background: white; padding: 20px; border-radius: 10px; max-width: 90%;box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: center;">
+									<button onclick="document.getElementById('popup-image').style.display='none';"
+													style="position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 24px; cursor: pointer;">x
+									</button>
+
+									<img src="/odoo_hosting_page/static/src/image/app1.png" alt="Odoo App Image" 
+											 style="max-width: 100%; height: auto;" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section style="background-color: #74506A; padding: 40px 0; text-align: center; color: white;">
+					<h2 style="font-family: 'Playfair Display', serif; font-size: 35px; color: white; margin-bottom: 10px;">Odoo, The Shortcut to Success</h2>
+
+					<div style="margin: 30px auto; max-width: 925px;">
+						<iframe width="100%" height="415"
+							src="https://www.youtube.com/embed/nbso3NVz3p8"
+							title="Odoo Video"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen="True"
+							style="border-radius: 16px;">
+						</iframe>
+					</div>
+				</section>
+				<section id="pricing" class="py-5">
+					<div class="container">
+						<div class="card shadow p-4 mb-4">
+							<div style="
+								display: inline-block;
+								padding: 10px 20px;
+								background-color: #74506A;
+								color: white;
+								font-size: 27px;
+								border-radius: 6px;
+								font-weight: 500;
+								cursor: default;
+								user-select: none;
+								text-align:center;
+								letter-spacing: 4px;
+								font-family: 'Playfair Display', serif; 
+							">
+								Pricing  Snapshot
+							</div><br/>
+							<table class="table table-bordered">
+								<thead class="text-center">
+									<tr>
+										<th style="text-align:left;">Feature</th>
+										<th>Free Plan</th>
+										<th>Paid Plan</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+									<tr><td style="text-align:left;">Cost</td><td>$0 (Lifetime)</td><td>Starts from $XX</td></tr>
+									<tr><td style="text-align:left;">Users Allowed</td><td>1 User</td><td>Multi-user</td></tr>
+									<tr><td style="text-align:left;">Edition</td><td>Community</td><td>Community / Enterprise</td></tr>
+									<tr><td style="text-align:left;">Version Selection</td><td>NO</td><td>YES</td></tr>
+									<tr><td style="text-align:left;">Domain Binding</td><td>NO</td><td>YES</td></tr>
+									<tr><td style="text-align:left;">Support</td><td>Basic</td><td>Priority</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+				<section id="edition-compare" class="bg-light py-5">
+					<div class="container">
+						<div class="card shadow p-4 mb-4">
+							<div style="
+								display: inline-block;
+								padding: 10px 20px;
+								background-color: #74506A;
+								color: white;
+								font-size: 27px;
+								border-radius: 6px;
+								font-weight: 500;
+								cursor: default;
+								user-select: none;
+								text-align: center;
+								letter-spacing: 4px;
+								font-family: 'Playfair Display', serif; 
+							">
+								Community   vs   Enterprise 
+							</div><br/>
+							<table class="hero-section mb-5 table table-striped">
+								<thead class="text-center">
+									<tr>
+										<th style="text-align:left;">Feature</th>
+										<th>Community</th>
+										<th>Enterprise</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+									<tr><td style="text-align:left;">Studio Access</td><td>NO</td><td>YES</td></tr>
+									<tr><td style="text-align:left;">Multi-company</td><td>YES</td><td>YES</td></tr>
+									<tr><td style="text-align:left;">Mobile App</td><td>Basic</td><td>Full</td></tr>
+									<tr><td style="text-align:left;">Advanced Reports</td><td>NO</td><td>YES</td></tr>
+									<tr><td style="text-align:left;">Odoo.sh Hosting</td><td>NO</td><td>YES</td></tr>
+									<tr><td style="text-align:left;">Support</td><td>Community</td><td>Odoo Official</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+				<section id="plans" class="oe_structure next-section hero-section mb-5">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card shadow p-4 mb-4">
+									<h3 style="letter-spacing: 2px; font-family: 'Playfair Display', serif; "> Free Setup (Lifetime)</h3>
+									<ul>
+										<li> Lifetime free hosting</li>
+										<li> 1 user only</li>
+										<li> Latest Odoo Community version</li>
+										<li> No domain/SSL</li>
+										<li> Great for testing or solo use</li>
+										<li> Slow Processing</li>
+									</ul>
+									<button type="button" name="plan" class="btn btn-outline-primary" data-plan="Free" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="document.getElementById('selected_plan').value='free'; return false;" value="free">Choose Free Plan</button>
+										<div t-att-class="'modal fade modal_shown show' if open_model else 'modal fade'" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" t-att-style="'display: block;' if open_model else ''" aria-modal="true" role="dialog">
+									    <div class="modal-dialog">
+									        <div class="modal-content position-relative">
+									        	<span class="close-btn position-absolute top-0 end-0 m-3" style="font-size: 20px; cursor: pointer;z-index: 1;" onclick="document.getElementById('staticBackdrop').style.display='none';window.location.href = '/odoo-hosting';">x</span>
+								            <div class="modal-body">
+								                <div id="otp-section" class="oe_structure bg-light">
+								                    <div class="container">
+								                        <div class="form-card shadow mx-auto" style="margin-top:background: #fff; padding: 30px; border-radius: 12px;min-height: 350px;">
+								                            <t t-if="otp_verified">
+								                                <div class="text-center">
+								                                    <img src="/odoo_hosting_page/static/src/image/verify.png" alt="Success" width="80" class="mb-3"/>
+								                                    <h4 class="text-success">Verification Successful!</h4><br/><br/>
+								                                    <img src="/odoo_hosting_page/static/src/image/team.png" alt="Team" width="50" class="mb-3"/>
+								                                    <h4 style="font-family: 'Merriweather';">Our team will contact you within a few hours.</h4>
+								                                    <p class="text-center mt-2">
+																										    For more information,<br/> you will contact <a href="mailto:info@doincredible.com">info@doincredible.com</a>.
+																										</p>
+								                                </div>
+								                            </t>
+
+								                            <t t-if="not otp_verified">
+								                                <form action="/odoo-hosting#otp-section" method="POST">
+								                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+								                                    <h3 class="text-center mb-4" style="max-width: 400px; margin: 55px auto;">Email Verification </h3>
+
+								                                    <div class="mb-3 position-relative" style="max-width: 400px; margin: 40px auto;">
+								                                        <input type="email" name="email" placeholder="Enter your email address" required="True" class="form-control ps-5" t-att-value="email if email else ''" />
+								                                        <i class="fa fa-envelope position-absolute top-50 translate-middle-y ps-3" style="left:10px; color:#888;"></i>
+								                                    </div>
+
+								                                    <t t-if="open_model">
+								                                        <div class="form-group row mb-3">
+								                                            <div class="d-flex justify-content-center gap-2">
+								                                                <input type="text" name="otp_digit_0" maxlength="1" class="form-control text-center otp-box" autocomplete="off" inputmode="numeric" required="True" />
+								                                                <input type="text" name="otp_digit_1" maxlength="1" class="form-control text-center otp-box" autocomplete="off" inputmode="numeric" required="True" />
+								                                                <input type="text" name="otp_digit_2" maxlength="1" class="form-control text-center otp-box" autocomplete="off" inputmode="numeric" required="True" />
+								                                                <input type="text" name="otp_digit_3" maxlength="1" class="form-control text-center otp-box" autocomplete="off" inputmode="numeric" required="True" />
+								                                            </div>
+								                                            <div class="text-success text-center mt-" t-if="otp_sent and not error_msg">
+								                                                OTP successfully sent to your email address.
+								                                            </div>
+								                                        </div>
+								                                    </t>
+
+								                                    <div class="text-center mt-3">
+								                                        <t t-if="not open_model">
+								                                            <button type="submit" onload="timer();" name="send_otp" value="1" style="max-width: 400px; margin: 20px auto;" class="btn btn-primary">Send OTP</button>
+								                                        </t>
+								                                        <t t-if="open_model">
+								                                            <button type="submit" class="btn btn-primary">SUBMIT</button>
+								                                            <t t-if="error_msg">
+												                                <div style="color:red;">
+												                                    <t t-esc="error_msg"/>
+												                                </div>
+												                            </t>
+								                                            <div class="mt-2">
+								                                                <label>Did you get the OTP?</label>
+								                                                <a href="#" onclick="document.getElementById('resend_otp').value='1'; this.closest('form').submit(); return false;" class="btn btn-link p-0" style="font-size: 14px;">Resend OTP</a>
+								                                                <input type="hidden" name="resend_otp" id="resend_otp" />
+								                                                <input type="hidden" name="otp_expired" id="otp_expired" value="0" />
+								                                                <div style="color:red;">OTP valid for <span id="timer"></span></div>
+								                                            </div>
+								                                        </t>
+								                                    </div>
+								                                </form>
+								                            </t>
+								                        </div>
+								                    </div>
+								                </div>
+								            </div>
+									      	</div>
+									    </div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card shadow p-4 mb-4">
+									<h3 style="letter-spacing: 2px; font-family: 'Playfair Display', serif; "> Paid Setup</h3>
+									<ul>
+										<li> Expanded Module Suite</li>
+										<li> Enhanced Features</li>
+										<li> Centralized Management</li>
+										<li> Managed Hosting</li>
+										<li> Real-time Data and Analytics</li>
+										<li> Frequent Upgrades</li>
+									</ul>
+									<button type="button" name="plan" class="btn btn-outline-primary" data-plan="Paid" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="paid" onclick="document.getElementById('selected_plan').value='paid'; return false;">Choose Paid Plan</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section id="why-us" class="bg-white py-5">
+					<div class="container">
+						<div class="card shadow p-4 mb-4">
+							<h2 class="text-center mb-4"> Why Choose Us ?</h2>
+							<div class="row text-center">
+								<div class="col-md-3"><img src="/odoo_hosting_page/static/src/image/experience.png" alt="Experience" width="50" class="mb-3"/><br/><p> 9+ Years of Experience</p></div>
+								<div class="col-md-3"><img src="/odoo_hosting_page/static/src/image/global.png" alt="Global" width="50" class="mb-3"/><br/><p> Global Support</p></div>
+								<div class="col-md-3"><img src="/odoo_hosting_page/static/src/image/secure.png" alt="Secure" width="50" class="mb-3"/><br/><p> Secure and Clean Setup</p></div>
+								<div class="col-md-3"><img src="/odoo_hosting_page/static/src/image/fast.png" alt="Fast" width="50" class="mb-3"/><br/><p> Fast Delivery</p></div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="custom-logo-line my-5">
+					<div class="logo-wrapper">
+					  <a href="https://www.facebook.com/Odoo" target="_blank">
+					    <div class="hover-image">
+					      <img class="default" src="/odoo_hosting_page/static/src/image/Facebook.webp" alt="Facebook" />
+					      <img class="hover" src="/odoo_hosting_page/static/src/image/Facebook.webp" alt="Facebook Hover" />
+					    </div>
+					  </a>
+					  <a href="https://www.instagram.com/explore/tags/odoo/" target="_blank">
+					    <div class="hover-image">
+					      <img class="default" src="/odoo_hosting_page/static/src/image/Instagram.webp" alt="Instagram" />
+					      <img class="hover" src="/odoo_hosting_page/static/src/image/Instagram.webp" alt="Instagram Hover" />
+					    </div>
+					  </a>
+					  <a href="https://github.com/odoo" target="_blank">
+					    <div class="hover-image">
+					      <img class="default" src="/odoo_hosting_page/static/src/image/github.png" alt="GitHub" />
+					      <img class="hover" src="/odoo_hosting_page/static/src/image/github.png" alt="GitHub Hover" />
+					    </div>
+					  </a>
+					  <a href="https://www.youtube.com/user/OpenERPonline" target="_blank">
+					    <div class="hover-image">
+					      <img class="default" src="/odoo_hosting_page/static/src/image/YouTube.png" alt="YouTube" />
+					      <img class="hover" src="/odoo_hosting_page/static/src/image/YouTube.png" alt="YouTube Hover" />
+					    </div>
+					  </a>
+					  <a href="https://www.linkedin.com/company/odoo" target="_blank">
+					    <div class="hover-image">
+					      <img class="default" src="/odoo_hosting_page/static/src/image/LinkedIn.png" alt="LinkedIn" />
+					      <img class="hover" src="/odoo_hosting_page/static/src/image/LinkedIn.png" alt="LinkedIn Hover" />
+					    </div>
+					  </a>
+					</div>
+				</section>
+				<section id="logos" class="text-center py-5">
+					<div class="container">
+						<img src="/odoo_hosting_page/static/src/image/odoocom.png" alt="Community Logo" class="mx-2" width="120"/>
+					</div>
+				</section>
+				<script type="module" src="/odoo_hosting_page/static/src/js/otp.js"></script>    
+			</t>
+		</form>
+	</template>
+</odoo>

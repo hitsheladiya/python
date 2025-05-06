@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_delivery_note">
+        <t t-call="delivery_note_report.external_layout">
+            <main>
+                <t t-foreach="docs" t-as="doc">
+                    <div style="padding:20px; margin-top:20px;">
+                        <t t-call="delivery_note_report.report_content_first"/>
+                    </div>
+                    <div style="padding:20px;margin-top: 30px;">
+                        <t t-call="delivery_note_report.report_content_second"/>
+                    </div>
+                </t>
+            </main>
+        </t>
+    </template>
+
+    <template id="external_layout">
+        <t t-if="not company">
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <t t-if="company.external_report_layout_id" t-call="{{company.external_report_layout_id.sudo().key}}"><t t-out="0"/></t>
+        <t t-else="else" t-call="web.external_layout_standard"><t t-out="0"/></t>
+
+    </template>
+
+    <template id="report_content_second">
+            <div class="row" style="align-items: center;">
+                <div class="col-2" style="display: flex; align-items: center;">
+                    <img src="/delivery_note_report/static/img/logo.png" style="width:130px; height:170px; margin-right: 10px;"/>
+                </div>
+                <div class="col-4 text-left" style="font-size:16px;">
+                        <strong>NATUBER NAVARRA S. XXI S.L.</strong><br/>
+                        B71083927<br/>
+                        Plaza Sta. Cecilia, 4 - 4º Dcha.<br/>
+                        31005 Pamplona (Navarra)<br/>
+                        Tel. móvil: 620 208 822 | Tel: 945 214 450<br/>
+                        marcos@natuber.com | info@natuber.com
+                </div>
+
+                <div class="col-3 text-center">
+                    <img src="/delivery_note_report/static/img/logo1.png" width="130px"/>
+                </div>
+                <div class="col-4" style="text-align: left; font-size:17px;">
+                    <t t-if="doc.partner_id.name"><t t-esc="doc.partner_id.name"/><br/></t>
+                    <t t-if="doc.partner_id.street"><t t-esc="doc.partner_id.street"/><br/></t>
+                    <t t-if="doc.partner_id.street2"><t t-esc="doc.partner_id.street2"/><br/></t>
+                    <t t-if="doc.partner_id.zip or doc.partner_id.city">
+                        <t t-esc="doc.partner_id.zip"/> <t t-esc="doc.partner_id.city"/><br/>
+                    </t>
+                    <t t-if="doc.partner_id.state_id"><t t-esc="doc.partner_id.state_id.name"/><br/></t>
+                    <t t-if="doc.partner_id.country_id"><t t-esc="doc.partner_id.country_id.name"/><br/></t>
+                    <t t-if="doc.partner_id.phone"><t t-esc="doc.partner_id.phone"/></t>
+                </div>
+            </div>
+            <br/> 
+            <table class="table table-borderless" style="margin: 0;">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;border: 1px solid black;">CÓDIGO</th>
+                        <th style="text-align: center;border: 1px solid black;">DESCRIPCIÓN</th>
+                        <th style="text-align: center;border: 1px solid black;">CANTIDAD</th>
+                        <th style="text-align: center;border: 1px solid black;">PRECIO</th>
+                        <th style="text-align: center;border: 1px solid black;">DTO.</th>
+                        <th style="text-align: center;border: 1px solid black;">IMPORTE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="doc.order_line" t-as="line">
+                        <tr>
+                            <td style="text-align: center; font-size:14px; border-top: none; border-bottom:none;"><t t-esc="line.product_id.default_code or ''"/></td>
+                            <td style="text-align: center; font-size:14px; border-top: none; border-bottom:none;"><t t-esc="line.product_id.name or ''"/></td>
+                            <td style="text-align: center; font-size:14px; border-top: none; border-bottom:none;"><t t-esc="line.product_uom_qty or 0"/></td>
+                            <td style="text-align: center; font-size:14px; border-top: none; border-bottom:none;"><t t-esc="line.price_unit or 0"/></td>
+                            <td style="text-align: center; font-size:14px; border-top: none; border-bottom:none;"><t t-esc="line.discount or ''"/></td>
+                            <td style="text-align: center; font-size:14px; border-top: none; border-bottom:none;"><t t-esc="line.price_subtotal or 0"/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+            <table class="table table-bordered" style="margin: 0;">
+                <tr>
+                    <td style="text-align: center;">FECHA</td>
+                    <td style="text-align: center;">CLIENTE</td>
+                    <td style="text-align: center;">ALBARÁN</td>
+                    <td style="text-align: center;">PEDIDO</td>
+                    <td style="text-align: center;" colspan="2"></td>
+                    <td style="text-align: center;">BASE 2.0%</td>
+                    <td style="text-align: right;"><t t-esc="doc.base_2 or ''"/></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><t t-esc="doc.date_order or ''"/></td>
+                    <td style="text-align: center;"><t t-esc="doc.partner_id.ref or ''"/></td>
+                    <td style="text-align: center;"><t t-esc="doc.name or ''"/></td>
+                    <td style="text-align: center;"><t t-esc="doc.order_id.client_order_ref or ''"/></td>
+                    <td style="text-align: center;" colspan="2"></td>
+                    <td style="text-align: center;">IVA 2.0%</td>
+                    <td style="text-align: right;"><t t-esc="doc.iva_2 or ''"/></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" colspan="6" rowspan="4"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">BASE 10.0%</td>
+                    <td style="text-align: right;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">IVA 10.0%</td>
+                    <td style="text-align: right;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><strong>TOTAL</strong></td>
+                    <td style="text-align: right;"><strong><t t-esc="doc.amount_total or '0.00'"/></strong></td>
+                </tr>
+            </table>
+    </template>
+
+    <template id="report_content_first">
+            <div class="row" style="align-items: center;">
+                <div class="col-2" style="display: flex; align-items: center;">
+                    <img src="/delivery_note_report/static/img/logo.png" style="width:130px; height:170px; margin-right: 10px;"/>
+                </div>
+                <div class="col-4 text-left" style="font-size:16px;">
+                        <strong>NATUBER NAVARRA S. XXI S.L.</strong><br/>
+                        B71083927<br/>
+                        Plaza Sta. Cecilia, 4 - 4º Dcha.<br/>
+                        31005 Pamplona (Navarra)<br/>
+                        Tel. móvil: 620 208 822 | Tel: 945 214 450<br/>
+                        marcos@natuber.com | info@natuber.com
+                </div>
+
+                <div class="col-3 text-center">
+                    <img src="/delivery_note_report/static/img/logo1.png" width="130px"/>
+                </div>
+                <div class="col-4" style="text-align: left; font-size:17px;">
+                    <t t-if="doc.partner_id.name"><t t-esc="doc.partner_id.name"/><br/></t>
+                    <t t-if="doc.partner_id.street"><t t-esc="doc.partner_id.street"/><br/></t>
+                    <t t-if="doc.partner_id.street2"><t t-esc="doc.partner_id.street2"/><br/></t>
+                    <t t-if="doc.partner_id.zip or doc.partner_id.city">
+                        <t t-esc="doc.partner_id.zip"/> <t t-esc="doc.partner_id.city"/><br/>
+                    </t>
+                    <t t-if="doc.partner_id.state_id"><t t-esc="doc.partner_id.state_id.name"/><br/></t>
+                    <t t-if="doc.partner_id.country_id"><t t-esc="doc.partner_id.country_id.name"/><br/></t>
+                    <t t-if="doc.partner_id.phone"><t t-esc="doc.partner_id.phone"/></t>
+                </div>
+            </div>
+            <br/> 
+            <table class="table table-borderless" style="margin: 0;">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">CÓDIGO</th>
+                        <th style="text-align: center;">DESCRIPCIÓN</th>
+                        <th style="text-align: center;">CANTIDAD</th>
+                        <th style="text-align: center;">PRECIO</th>
+                        <th style="text-align: center;">DTO.</th>
+                        <th style="text-align: center;s">IMPORTE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="doc.order_line" t-as="line">
+                        <tr>
+                            <td style="text-align: center; border-top: none; border-bottom:none;"><t t-esc="line.product_id.default_code or ''"/></td>
+                            <td style="text-align: center; border-top: none; border-bottom:none;"><t t-esc="line.product_id.name or ''"/></td>
+                            <td style="text-align: center;border-top: none; border-bottom:none;"><t t-esc="line.product_uom_qty or 0"/></td>
+                            <td style="text-align: center;border-top: none; border-bottom:none;"><t t-esc="line.price_unit or 0"/></td>
+                            <td style="text-align: center;border-top: none; border-bottom:none;"><t t-esc="line.discount or ''"/></td>
+                            <td style="text-align: center;border-top: none; border-bottom:none;"><t t-esc="line.price_subtotal or 0"/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+            <table class="table table-bordered" style="margin: 0;">
+                <tr>
+                    <td style="text-align: center;">FECHA</td>
+                    <td style="text-align: center;">CLIENTE</td>
+                    <td style="text-align: center;">ALBARÁN</td>
+                    <td style="text-align: center;">PEDIDO</td>
+                    <td style="text-align: center;" colspan="2"></td>
+                    <td style="text-align: center;">BASE 2.0%</td>
+                    <td style="text-align: right;"><t t-esc="doc.base_2 or ''"/></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><t t-esc="doc.date_order or ''"/></td>
+                    <td style="text-align: center;"><t t-esc="doc.partner_id.ref or ''"/></td>
+                    <td style="text-align: center;"><t t-esc="doc.name or ''"/></td>
+                    <td style="text-align: center;"><t t-esc="doc.order_id.client_order_ref or ''"/></td>
+                    <td style="text-align: center;" colspan="2"></td>
+                    <td style="text-align: center;">IVA 2.0%</td>
+                    <td style="text-align: right;"><t t-esc="doc.iva_2 or ''"/></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" colspan="6" rowspan="4"><strong>Obsv.</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">BASE 10.0%</td>
+                    <td style="text-align: right;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">IVA 10.0%</td>
+                    <td style="text-align: right;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><strong>TOTAL</strong></td>
+                    <td style="text-align: right;"><strong><t t-esc="doc.amount_total or '0.00'"/></strong></td>
+                </tr>
+            </table>
+    </template>
+
+
+    <record id="delivery_note_paperformat" model="report.paperformat">
+        <field name="name">No Header/Footer</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="orientation">Portrait</field>
+    </record>
+    
+    <record id="action_report_delivery_note" model="ir.actions.report">
+        <field name="name">Delivery Note</field>
+        <field name="model">natuber.delivery.note</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">delivery_note_report.report_delivery_note</field>
+        <field name="report_file">delivery_note_report.report_delivery_note</field>
+        <field name="paperformat_id" ref="delivery_note_report.delivery_note_paperformat"/>
+        <field name="print_report_name">(object.order_id)</field>
+        <field name="binding_model_id" ref="model_natuber_delivery_note"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

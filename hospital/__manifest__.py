@@ -1,0 +1,30 @@
+{
+	"name" : "Hospital",
+	"version" : "1.1",
+	"author" : "zalak",
+	"summary" : "Hospital management system",
+	"sequence" : 1,
+	"demo" : [],
+	"description" : "this is a Hospital management system softwrein odoo17",
+	"depends" : ['web', 'base', 'mail'],
+	"data":[
+			'security/ir.model.access.csv',
+			'wizard/wizard_view.xml',
+			'views/doctor_view.xml',
+			'views/hospital_view.xml',
+			'views/patient_view.xml',
+			'views/medicine_view.xml',
+			'views/menuitem.xml',
+			'report/hospital_report.xml',
+			'report/hospital_report_template.xml',
+			'report/doctor_report.xml',
+			'report/doctor_report_template.xml',		
+	],
+
+	"category" : "Hospital",
+	'application' : True,
+	'installable' : True,
+	'auto_install' : True,
+	'license' : 'LGPL-3',
+
+}	

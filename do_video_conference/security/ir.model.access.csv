@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_calendar_event_all_user,calendar.event_all_user,model_calendar_event,,1,1,1,1
+"base.access_ir_attachment_group_portal_public","ir_attachment group_portal_public","base.model_ir_attachment",,1,1,1,1
+access_participant_history,access_participant_history,model_participant_history,,1,1,1,1
+access_meeting_attachment_history,access_meeting_attachment_history,model_meeting_attachment_history,,1,1,1,1
+access_participant_history_total_time,access_participant_history_total_time,model_participant_history_total_time,,1,1,1,1

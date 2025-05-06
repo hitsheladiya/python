@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- TREE VIEW -->
+		<record id="tree_appointment_view" model="ir.ui.view">
+			<field name="name">hospital.appointment.list</field>
+			<field name="model">hospital.appointment</field>
+			<field name="arch" type="xml">
+				<list string="Appointments">
+					<field name="patients_id"/>
+					<field name="date_time"/>
+				</list>
+			</field>
+		</record>
+
+		<!-- FORM VIEW -->
+		<record id="form_appointment_view" model="ir.ui.view">
+			<field name="name">hospital.appointment.form</field>
+			<field name="model">hospital.appointment</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="patients_id"/>
+								<field name="date_time"/>
+								<field name="appointment_id"/>
+							</group>
+						</group>
+					</sheet>
+					<chatter/>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="action_appointment" model="ir.actions.act_window">
+			<field name="name">Appointment</field>
+			<field name="res_model">hospital.appointment</field>
+			<field name="view_mode">list,form</field>
+		</record>
+	</data>
+</odoo>

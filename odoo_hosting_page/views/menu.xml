@@ -1,0 +1,12 @@
+<odoo>
+  <record id="odoo_menu" model="website.menu">
+    <field name="name">Odoo</field>
+    <field name="url">#</field>
+    <field name="website_id" ref="website.default_website"/>
+  </record>
+  <record id="odoo_hosting_menu" model="website.menu">
+    <field name="name">Odoo-Hosting</field>
+    <field name="url">/odoo-hosting</field>
+    <field name="parent_id" ref="odoo_menu"/>
+  </record>
+</odoo>

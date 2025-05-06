@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<template id ="report_hospital_patient_document">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="doc">
+					<t t-call="web.external_layout"> 
+						<div style="border: 10px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); background-color: #f9f9f9;">
+								<h1 style="text-align:center;">Appointment Details</h1>
+								Name :<t t-esc="doc.name"/>
+								<div>
+									Age : <t t-esc="doc.age"/>
+								</div>
+								<div>	
+									Birth-Date : <t t-esc="doc.date"/>
+								</div>
+								<div>	
+									Gender : <t t-esc="doc.gender"/>
+								</div>	
+								Mobile No : <t t-esc="doc.mobile_no"/>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>		
+	</data>
+</odoo>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- list VIEW -->
+		<record id="list_hospital_view" model="ir.ui.view">
+			<field name="name">hospital.hospital.list</field>
+			<field name="model">hospital.hospital</field>
+			<field name="arch" type="xml">
+				<list>
+					<field name="name"/>
+				</list>
+			</field>
+		</record>
+
+		<record id="list_hospital_search" model="ir.ui.view">
+			<field name="name">hospital.hospital.search</field>
+			<field name="model">hospital.hospital</field>
+			<field name="arch" type="xml">
+				<search  string="hospital Search">
+					<field name="name"/>
+					<field name="hospital_id"/>
+					<field name="hospitals_id" filter_domain="['|',('hospital_id','ilike',self),('hospitals_id','ilike',self)]"/>
+				</search>
+			</field>
+		</record>
+
+		<record id="hospital_hospital_kanban_view" model="ir.ui.view">
+			<field name="name">hospital.hospital.kanban.view</field>
+			<field name="model">hospital.hospital</field>
+			<field name="arch" type="xml">
+				<kanban string ="hospital kanban" class="o_res_partner_kanban">
+					<templates>
+						<t t-name ="card">
+							<div class = "oe_kanban_global_click" style="height=140px; background-color:#d4ecf3;color:#276a7d">
+								<div style="width:30%; float:left;">
+									<!-- <img alt="Avatar" t-att-src="kanban_image('hospital.hospital', 'image', record.id.raw_value)" style="height:120px; width:90px"/> -->
+									<field name="image" widget="image" options="{'size': [110, 130]}" alt="Channel"/>
+								</div>	
+								<div style="width:70%; float:right;" >
+									<ul style="list-style-type:none;">
+										<li>
+											<b>Name: </b>
+											<field name="name"/>
+										</li>		
+										<li>
+											<b>Address: </b>
+											<field name="add"/>
+										</li>
+									</ul>
+								</div>										
+							</div>
+						</t>	
+					</templates>
+				</kanban>
+			</field>
+		</record> 
+		
+		<!-- FORM VIEW -->
+		<record id="form_hospital_view" model="ir.ui.view">
+			<field name="name">hospital.hospital.form</field>
+			<field name="model">hospital.hospital</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button name="action_compute_display_name" string="Hospital" type="object"
+								class="oe_stat_button" icon="fa-hospital-o">
+								<field string="Patients" name="total_patient" widget="statinfo"/>
+							</button>
+						</div>
+						<field name="image" widget="image" style="width:89px; height:150px;"/>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="add"/>								
+							</group>
+							<notebook>
+								<page string = "Patient Detail">
+									<group>
+										<field name="hospital_id"/>
+									</group>
+								</page>
+								<page string = "hospital Details">
+									<group>
+										<field name="hospitals_id"/>
+									</group>
+								</page>
+							</notebook>			
+						</group>
+					</sheet>
+					<chatter/>
+				</form>
+			</field>
+		</record>
+
+		<!-- ACTION -->
+		<record id="action_hospital" model="ir.actions.act_window">
+			<field name="name">Hospital</field>
+			<field name="res_model">hospital.hospital</field>
+			<field name="view_mode">search,kanban,list,form</field>
+		</record>
+	</data>
+</odoo>

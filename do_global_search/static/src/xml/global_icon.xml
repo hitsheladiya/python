@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+	<t t-name="global_search_icon" owl="1">
+		
+		<div t-attf-class="o_web_studio_navbar_item {{ buttonDisabled ? 'o_disabled' : ''}} d-md-inline-block" t-ref="root" t-on-click.prevent="_openGlobalWizard">
+			<button title="Global Search" aria-label="Global Search" class="o_nav_entry">
+				<i class="fa fa-search" role="img" aria-label="Global Search"></i>
+			</button>
+		</div>
+	
+	</t>
+</templates>

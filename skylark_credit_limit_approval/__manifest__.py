@@ -1,0 +1,20 @@
+{
+	'name' : 'Credit Limit',
+	'version' : '18.0',
+	'summary' : 'Set Credit Limit',
+	'category' : 'Sales',
+	'depends' : ['base','sale'],
+	"data": [
+		"security/security.xml",
+		"security/ir.model.access.csv",
+		"wizard/credit_limit_wizard.xml",
+		"views/customer_credit_request.xml",
+		"views/partner_credit_limit.xml",
+		"views/sale_order.xml",
+		"views/dilevary_view.xml",
+	],
+	'application' : False,
+	'installable' : True,
+	'auto_install' : False,
+	'license' : 'LGPL-3',
+}

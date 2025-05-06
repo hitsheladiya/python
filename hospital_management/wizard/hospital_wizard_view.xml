@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- FORM VIEW -->
+		<record id="form_appointment_view" model="ir.ui.view">
+			<field name="name">hospital.patient.wizard.form</field>
+			<field name="model">hospital.patient.wizard</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+								<field name="name"/>
+								<field name="dob"/>
+								<field name="mobile_number"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="action_hospital_wizard" model="ir.actions.act_window">
+			<field name="name">Patient Wizard</field>
+			<field name="res_model">hospital.patient.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

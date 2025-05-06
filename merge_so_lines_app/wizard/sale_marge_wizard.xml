@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- FORM VIEW -->
+		<record id="form_marge_sales_view" model="ir.ui.view">
+			<field name="name">marge.sales.wizard.form</field>
+			<field name="model">marge.sales.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Marge Sales Data">
+					Are You Sure to Sales Order Line ?
+					<footer>
+						<button string="Marge" type="object" name="action_merge_lines" class="btn-primary"/>
+						<button string="Cancel" type="object" class="btn-secondary" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="action_marge_sales_wizard" model="ir.actions.act_window">
+			<field name="name">Marge Sale</field>
+			<field name="res_model">marge.sales.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

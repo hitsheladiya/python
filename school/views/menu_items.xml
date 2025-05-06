@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<menuitem id="menu_school_management"
+				name="School Management"/>
+
+		<menuitem id="menu_school"
+				name="School"
+				parent="menu_school_management"
+				action="action_school"/>
+
+		<menuitem id="menu_course"
+				name="Course"
+				parent="menu_school_management"
+				action="action_course"/>
+
+		<menuitem id="menu_class"
+				name="Class"
+				parent="menu_school_management"
+				action="action_class"/>
+
+		<menuitem id="menu_student"
+				name="Student"
+				parent="menu_school_management"
+				action="action_student"/>
+
+		<menuitem id="menu_teacher"
+				name="Teacher"
+				parent="menu_school_management"
+				action="action_teacher"/>
+	</data>
+</odoo>

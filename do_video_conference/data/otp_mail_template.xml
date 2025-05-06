@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="meeting_otp_mail_template" model="mail.template">
+		<field name="name">Calendar: Meeting OTP</field>
+		<field name="model_id" ref="base.model_res_partner" />
+		<field name="subject">Meeting OTP</field>
+		<field name="email_from">{{ object.user_id.email or '' }}</field>
+		<field name="email_to">{{ object.email }}</field>
+		<field name="partner_to">{{ object.id or False }}</field>
+		<field name="lang">{{ object.lang }}</field>
+		<field name="body_html" type="html">
+			<div>
+				Hello
+				Your OTP is: <t t-esc="object.meeting_otp"/>
+				Thanks
+			</div>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,29 @@
+<odoo>
+    <record id="action_daily_transaction_report" model="ir.actions.act_window">
+        <field name="name">Daily Transaction Report</field>
+        <field name="res_model">daily.transaction.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_daily_transaction_root"
+              name="Daily Transactions"
+              parent="sale.sale_menu_root"
+              sequence="50"/>
+
+    <menuitem id="menu_daily_transaction_report"
+              name="Daily Transaction Report"
+              parent="menu_daily_transaction_root"
+              action="action_daily_transaction_report"/>
+              
+    <menuitem id="menu_daily_transaction"
+              name="Daily Transaction"
+              parent="purchase.menu_purchase_root"
+              sequence = "100"/>
+              
+    <menuitem id="menu_daily_transaction_re"
+              name="Daily Transaction Report"
+              parent="menu_daily_transaction"
+              action="action_daily_transaction_report"/>
+              
+</odoo>

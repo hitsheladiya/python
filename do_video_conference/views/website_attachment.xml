@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="website_ir_attachment_list">
+        <div class="website_ir_attachment_list">
+            <h5 class="mt8 mb8">Attachments</h5>
+            <t t-foreach="attachments" t-as="attachment">
+                <div class="card mt8">
+                    <div class="card-body" style="padding-left: 30px;">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class='oe_attachment_embedded o_image o_image_small mr-2 mr-lg-3'
+                                     t-att-title="attachment.name" t-att-data-mimetype="attachment.mimetype"
+                                     t-attf-data-src="/web/image/#{attachment.id}/50x40?access_token=#{attachment.access_token}"/>
+                            </div>
+                            <div class="col-9">
+                                <h6 class="card-title">
+                                    <t t-esc="attachment.name"/>
+                                </h6>
+                                <t t-esc="attachment.create_date" t-options="{'widget': 'date', 'format': 'dd MMM, yyyy'}"></t>
+                            </div>
+                            <t t-if="attachment.url and not attachment.datas">
+                                <t t-set="attachment_url" t-value="attachment.url"/>
+                            </t>
+                            <t t-if="attachment.datas or not attachment.url">
+                                <t t-set="attachment_url" t-value="'/web/content/'+str(attachment.id)"/>
+                            </t>
+                            <!-- <div class="float-right mt_attachment_rightside">
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-v"/>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item o_sidebar_preview_attachment" href="#"
+                                           t-att-data-id="attachment.id" t-att-data-url="attachment_url"
+                                           t-attf-data-original-title="#{attachment.name}"
+                                           t-att-data-extension="attachment.get_extension()">
+                                            <i class="fa fa-search-plus"/>
+                                            Perview
+                                        </a>
+                                        <a class="dropdown-item o_sidebar_attachment_download"
+                                           t-attf-href="/web/content/#{attachment.id}?download=true"
+                                           t-att-data-id="attachment.id">
+                                            <i class="fa fa-download"/>
+                                            Download
+                                        </a>
+                                        <t t-if="request.env.user and request.env.user in calendar_event.document_delete_ids">
+                                            <a t-if="calendar_event.document_delete"
+                                               class="dropdown-item o_sidebar_attachment_delete" href="#"
+                                               t-att-data-id="attachment.id" t-att-data-name="attachment.name">
+                                                <i class="fa fa-trash"/>
+                                                Delete
+                                            </a>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="float-right mt_attachment_rightside" style="padding: 0px;">
+                                <div class="dropdown d-inline-block">
+                                    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-original-title="Actions" tabindex="-1" aria-expanded="false">
+                                        <span title="Actions"><i class="fa fa-ellipsis-v"></i></span>
+                                    </button>
+                                    <style>
+                                        .custom-css {
+                                            margin-top:-40px !important;
+                                            margin-left:41px !important;
+                                            font-size: 10px !important;
+                                        }
+                                    </style>
+                                    <ul class="dropdown-menu custom-css" style="">
+                                        <li id="display-1-dropdown-item">
+                                           <a class="dropdown-item o_sidebar_preview_attachment" href="#"
+                                               t-att-data-id="attachment.id" t-att-data-url="attachment_url"
+                                               t-att-data-original-title="attachment.name"
+                                               t-att-data-extension="attachment.get_extension()">
+                                                <i class="fa fa-search-plus"></i> Preview
+                                            </a>
+                                        </li>
+                                        <li id="display-2-dropdown-item">
+                                         <a class="dropdown-item o_sidebar_attachment_download"
+                                               t-attf-href="/web/content/#{attachment.id}?download=true"
+                                               t-att-data-id="attachment.id">
+                                                <i class="fa fa-download"></i> Download
+                                            </a>
+                                        </li>
+                                        <t t-if="calendar_event and calendar_event.document_delete and request.env.user in calendar_event.document_delete_ids">
+                                            <li id="display-3-dropdown-item">
+                                                <a class="dropdown-item o_sidebar_attachment_delete" href="#" t-att-data-id="attachment.id" t-att-data-name="attachment.name">
+                                                    <i class="fa fa-trash"></i> Delete
+                                                </a>
+                                            </li>
+                                        </t>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+
+    <template id="website_ir_attachment" name="Attachemnt">
+        <div class="row no-gutters" id="attachments_list_add"
+             t-att-data-notify_event_channel_name="calendar_event.notify_event_channel_name"
+             t-att-data-res_id="calendar_event.id">
+            <button type="button" class="slide-toggle btn btn-primary d-none d-sm-block ml16 mt8" style="width: 50%;">
+                <i class="fa fa-bars" style="float: right;"/>
+            </button>
+            <button type="button" class="btn btn-primary d-none d-sm-block ml16 mt8 perview_full_screen" style="width: 50%;">
+                <i class="fa fa-expand" style="float: right;"/>
+            </button>
+            <div class="col-12 row ml0">
+                <div class="col-lg-5 col-xs-12 attachment_sliding">
+                    <t t-call="do_video_conference.website_ir_attachment_list"/>
+                    <div class="card mt8"
+                         t-if="request.env.user and request.env.user in calendar_event.document_list_preview_user_ids">
+                        <div class="card-body">
+                            <div class="row">
+                                <form action="#" class="form_attachment_add col-12" id="form_attachment_add" enctype="multipart/form-data" method="post">
+                                    <input type="hidden" name="res_id" t-att-value="calendar_event.id"/>
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="res_model" value="calendar.event"/>
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" class="form-control" id="name"
+                                               placeholder="Name..." required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Type</label>
+                                        <select name="type" class="form-control file_attachment_type"
+                                                required="required">
+                                            <option value="binary">File</option>
+                                            <option value="url">URL</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group file_attachment_binary">
+                                        <label for="exampleFormControlFile1">Attachment</label>
+                                        <input type="file" class="form-control-file" name="datas"/>
+                                    </div>
+                                    <div class="form-group file_attachment_url d-none">
+                                        <label for="url">URL</label>
+                                        <input type="text" class="form-control" name="url" id="url"
+                                               placeholder="URL..."/>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-primary button_attachment_add">
+                                                <i class="fa fa-plus"/>
+                                                ADD
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-xs-12 slide_attachment_previews">
+                    <div class="attachment_previews">
+                        <div class="text-center">
+                            <img src="/web/static/img/smiling_face.svg" class="img img-fluid"/>
+                            <h6>Preview your document here Click "..." on the right corner of the document and click on
+                                "Preview" option you will see a document preview here.
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="meeting_personal_notes">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mt-1">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Personal Notes</h4>
+                            </div>
+                            <div class="col-md-6 text-right" style="text-align: right;">
+                                <button class="btn btn-primary" id="button_save_note">
+                                    <i class="fa fa-save"/>
+                                    Save Note
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <t t-set="note_memo" t-value="False"/>
+                    <t t-if="calendar_event.notes_ids">
+                        <t t-set="note_memo"
+                           t-value="calendar_event.notes_ids.filtered(lambda r: request.env.user and request.env.user.id in r.user_ids.ids)"/>
+                    </t>
+                    <div class="card-body pt-0 pb-0 pr-0 pl-0">
+                        <div id="editor" class="editor">
+                            <t t-if="note_memo">
+                                <p t-out="note_memo[0].description"/>
+                            </t>
+                            <t t-else="">
+                                <p>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </p>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
